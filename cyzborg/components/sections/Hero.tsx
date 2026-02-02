@@ -45,26 +45,42 @@ const Hero: React.FC = () => {
       {/* Changed mobile margin to mt-1 (down 2 clicks from -mt-1) while keeping desktop at -mt-3 */}
       <div className="relative z-20 flex flex-col items-center max-w-[90rem] mx-auto text-center pb-8 px-4 mt-1 md:-mt-3">
         
-        {/* Headline */}
-        <h1 className="font-display text-6xl md:text-8xl lg:text-[10rem] font-bold uppercase leading-[0.85] text-white tracking-tighter mb-8 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
-          Train Like <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-400 to-gray-600">
-            A Machine.
+        {/* NEW HERO HEADLINE: The Augmented Athlete (H1) */}
+        <h1 className="flex flex-col items-center font-display font-bold uppercase leading-[0.85] text-white tracking-tighter mb-8 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
+          {/* Top Line: THE (tag) + AUGMENTED */}
+          <span className="relative inline-block">
+            <span className="absolute -top-3 left-0.5 md:-top-5 md:left-1 font-sans text-xs md:text-xl tracking-[0.2em] md:tracking-[0.3em] text-cyzborg-blue font-bold">
+              THE
+            </span>
+            <span className="text-6xl md:text-8xl lg:text-[10rem] block">
+              AUGMENTED
+            </span>
+          </span>
+          
+          {/* Bottom Line: ATHLETE. */}
+          <span className="text-6xl md:text-8xl lg:text-[10rem] text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-400 to-gray-600 block">
+            ATHLETE.
           </span>
         </h1>
+
+        {/* SECONDARY COMMAND (H2) */}
+        <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold uppercase tracking-widest text-neutral-300 mb-12 opacity-90 drop-shadow-md">
+          Train Like A Machine.
+        </h2>
 
         {/* PRODUCT MANIFESTO */}
         <div className="flex flex-col items-center space-y-2 max-w-5xl mb-12 border-y border-neutral-800 py-8 px-4 w-full bg-cyzborg-black/80 backdrop-blur-sm shadow-[0_0_30px_rgba(0,0,0,0.5)]">
           
           {/* Primary Product Line */}
-          <h2 className="font-display text-sm sm:text-xl md:text-3xl uppercase tracking-widest text-cyzborg-white whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
+          <h3 className="font-display text-sm sm:text-xl md:text-3xl uppercase tracking-widest text-cyzborg-white whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
             Performance Apparel <span className="text-cyzborg-orange mx-1 md:mx-2">&</span> Graphic Tees
-          </h2>
+          </h3>
 
-          {/* Target Audience & Action */}
+          {/* Target Audience & Action (Refined Subtext) */}
           <div className="space-y-2">
             <p className="font-sans text-neutral-300 text-sm md:text-lg uppercase tracking-[0.2em] leading-relaxed max-w-3xl mx-auto">
-              For today’s modern cyborgs who <span className="text-white font-bold">train hard</span>, <span className="text-white font-bold">track everything</span>, and keep moving forward.
+              Technology enhances the process. The athlete does the work. <br className="hidden md:inline" />
+              <span className="text-white font-bold">Train Hard. Track Everything. Refine the System.</span>
             </p>
           </div>
 
@@ -80,13 +96,13 @@ const Hero: React.FC = () => {
         {/* CTA */}
         <div className="flex flex-col items-center space-y-5">
           <Button onClick={scrollToJoin} className="md:px-12 md:py-5 md:text-lg">
-            Join The System
+            STAY CONNECTED
           </Button>
           <div className="flex flex-col items-center space-y-2">
             <span className="text-cyzborg-orange text-[10px] md:text-xs uppercase tracking-[0.3em] animate-pulse font-mono">
               System Initializing...
             </span>
-            <p className="text-neutral-500 text-[10px] md:text-xs font-sans tracking-widest uppercase">
+            <p className="text-neutral-500 text-sm md:text-base font-sans tracking-widest uppercase">
               Coming later in 2026. Follow for updates.
             </p>
           </div>
