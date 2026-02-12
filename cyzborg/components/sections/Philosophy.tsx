@@ -3,7 +3,7 @@ import { SectionIds } from '../../types';
 
 const Philosophy: React.FC = () => {
   return (
-    <section id={SectionIds.PHILOSOPHY} className="bg-cyzborg-black py-8 md:py-12 relative border-t border-neutral-900 overflow-hidden">
+    <section id={SectionIds.PHILOSOPHY} className="bg-cyzborg-black py-8 md:py-12 relative border-t border-neutral-900 overflow-hidden scroll-mt-24 md:scroll-mt-32">
       
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(20,20,20,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(20,20,20,0.5)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none opacity-20"></div>

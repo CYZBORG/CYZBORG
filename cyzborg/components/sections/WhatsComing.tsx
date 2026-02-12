@@ -48,7 +48,7 @@ const WhatsComing: React.FC = () => {
   ];
 
   return (
-    <section id={SectionIds.WHATS_COMING} className="pt-8 pb-8 bg-cyzborg-black relative overflow-hidden border-t border-neutral-800">
+    <section id={SectionIds.WHATS_COMING} className="pt-8 pb-8 bg-cyzborg-black relative overflow-hidden border-t border-neutral-800 scroll-mt-24 md:scroll-mt-32">
        
        {/* Background Watermark - Helmet SVG */}
        <div className="absolute top-10 right-0 w-[500px] md:w-[700px] opacity-[0.03] pointer-events-none rotate-12 translate-x-1/4 select-none z-0">

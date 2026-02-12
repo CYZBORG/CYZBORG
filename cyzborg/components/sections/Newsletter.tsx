@@ -4,7 +4,7 @@ import { Instagram, ExternalLink, MessageCircle } from 'lucide-react';
 
 const Newsletter: React.FC = () => {
   return (
-    <section id={SectionIds.NEWSLETTER} className="py-8 px-4 bg-cyzborg-black relative overflow-hidden border-t border-neutral-900">
+    <section id={SectionIds.NEWSLETTER} className="py-8 px-4 bg-cyzborg-black relative overflow-hidden border-t border-neutral-900 scroll-mt-24 md:scroll-mt-32">
       
       {/* Premium Top Scanline - Dual Brand Colors */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-cyzborg-blue via-transparent to-cyzborg-orange opacity-50"></div>
