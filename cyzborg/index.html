@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CYZBORG | The Augmented Athlete</title>
+    <meta name="description" content="Performance apparel engineered for discipline, endurance, and relentless progress." />
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Rajdhani', 'sans-serif'], // Technical, futuristic feel
+              display: ['Oswald', 'sans-serif'], // Bold, compressed headers like Gymreapers
+            },
+            colors: {
+              cyzborg: {
+                black: '#000000', // Pure Black
+                dark: '#0B0B0B',  // Matte Black (Background Alt)
+                white: '#F5F5F5', // Off-White Text
+                blue: '#00AEEF',  // Electric Blue (Action)
+                orange: '#C45A1A', // Burnt Orange (Emphasis)
+                gray: '#8A8A8A',  // Muted Gray (UI)
+              }
+            },
+            backgroundImage: {
+              'grid-pattern': "linear-gradient(to right, #1f1f1f 1px, transparent 1px), linear-gradient(to bottom, #1f1f1f 1px, transparent 1px)",
+            },
+            keyframes: {
+              scan: {
+                '0%': { left: '-100%' },
+                '100%': { left: '200%' },
+              },
+              glitch: {
+                '0%, 100%': { transform: 'translate(0)' },
+                '20%': { transform: 'translate(-2px, 1px)' },
+                '40%': { transform: 'translate(-1px, -1px)' },
+                '60%': { transform: 'translate(2px, 1px)' },
+                '80%': { transform: 'translate(1px, -1px)' },
+              },
+              'led-stretch': {
+                '0%': { 
+                  transform: 'scaleX(1)', 
+                  filter: 'drop-shadow(0 0 0px rgba(0,174,239,0))' 
+                },
+                '30%': { 
+                  transform: 'scaleX(1.04)', 
+                  filter: 'drop-shadow(-3px 0 0px rgba(0,174,239,0.8)) drop-shadow(3px 0 0px rgba(196,90,26,0.8))' 
+                },
+                '60%': { 
+                  transform: 'scaleX(1.02)', 
+                  filter: 'drop-shadow(2px 0 0px rgba(0,174,239,0.8)) drop-shadow(-2px 0 0px rgba(196,90,26,0.8))' 
+                },
+                '100%': { 
+                  transform: 'scaleX(1.06)', 
+                  filter: 'drop-shadow(0 0 12px rgba(0,174,239,0.9))' 
+                }
+              },
+              'crackle-intro': {
+                '0%': { filter: 'drop-shadow(0 0 2px #00AEEF)', transform: 'translate(0, 0) rotate(0deg)' },
+                '30%': { filter: 'drop-shadow(0 0 2px #00AEEF)', transform: 'translate(0, 0) rotate(0deg)' },
+                '32%': { filter: 'drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #00AEEF)', transform: 'translate(-1px, 1px) rotate(-1deg)' },
+                '34%': { filter: 'drop-shadow(0 0 2px #00AEEF)', transform: 'translate(0, 0) rotate(0deg)' },
+                '60%': { filter: 'drop-shadow(0 0 2px #00AEEF)', transform: 'translate(0, 0) rotate(0deg)' },
+                '62%': { filter: 'drop-shadow(0 0 15px #fff) drop-shadow(0 0 30px #00AEEF)', transform: 'translate(1px, -1px) rotate(1deg)' },
+                '64%': { filter: 'drop-shadow(0 0 2px #00AEEF)', transform: 'translate(0, 0) rotate(0deg)' },
+                '80%': { filter: 'drop-shadow(0 0 2px #00AEEF)', transform: 'translate(0, 0) rotate(0deg)' },
+                '82%': { filter: 'drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px #00AEEF)', transform: 'translate(-2px, 0) rotate(0deg)' },
+                '84%': { filter: 'drop-shadow(0 0 2px #00AEEF)', transform: 'translate(0, 0) rotate(0deg)' },
+                '90%': { filter: 'drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #00AEEF)', transform: 'translate(1px, 1px) rotate(1deg)' },
+                '92%': { filter: 'drop-shadow(0 0 2px #00AEEF)', transform: 'translate(0, 0) rotate(0deg)' },
+                '95%': { filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 10px #C45A1A)', transform: 'translate(0, 0) rotate(0deg)' },
+                '100%': { filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 5px #C45A1A)', transform: 'translate(0, 0) rotate(0deg)' },
+              },
+              'crackle': {
+                '0%, 100%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 5px #C45A1A)', 
+                  transform: 'translate(0, 0) rotate(0deg)' 
+                },
+                '10%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #C45A1A)', 
+                  transform: 'translate(-1px, 1px) rotate(-1deg)' 
+                },
+                '20%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 5px #C45A1A)', 
+                  transform: 'translate(1px, -1px) rotate(1deg)' 
+                },
+                '30%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 15px #fff) drop-shadow(0 0 30px #C45A1A)', 
+                  transform: 'translate(-2px, 0) rotate(0deg)' 
+                },
+                '40%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 8px #C45A1A)', 
+                  transform: 'translate(1px, 2px) rotate(1deg)' 
+                },
+                '50%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 25px #fff) drop-shadow(0 0 50px #C45A1A)', 
+                  transform: 'translate(-1px, -2px) rotate(-1deg)' 
+                },
+                '60%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 5px #C45A1A)', 
+                  transform: 'translate(2px, 1px) rotate(0deg)' 
+                },
+                '70%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #C45A1A)', 
+                  transform: 'translate(-1px, -1px) rotate(-1deg)' 
+                },
+                '80%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 6px #C45A1A)', 
+                  transform: 'translate(1px, 1px) rotate(1deg)' 
+                },
+                '90%': { 
+                  filter: 'sepia(1) saturate(3) hue-rotate(345deg) drop-shadow(0 0 20px #fff) drop-shadow(0 0 40px #C45A1A)', 
+                  transform: 'translate(-2px, 1px) rotate(0deg)' 
+                },
+              }
+            },
+            animation: {
+              'scan': 'scan 1.5s ease-in-out infinite',
+              'glitch': 'glitch 0.2s ease-in-out infinite',
+              'led-stretch': 'led-stretch 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+              'crackle': 'crackle 0.3s infinite',
+              'crackle-build': 'crackle-intro 1.5s ease-in forwards, crackle 0.15s 1.5s infinite',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #000000;
+        color: #F5F5F5;
+      }
+      /* Custom selection color */
+      ::selection {
+        background: #00AEEF;
+        color: #000;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body className="overflow-x-hidden w-full">
+    <div id="root" className="overflow-x-hidden w-full"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
