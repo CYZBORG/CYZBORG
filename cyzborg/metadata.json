@@ -1,0 +1,8 @@
+{
+  "name": "CYZBORG | The Augmented Athlete",
+  "description": "Performance apparel engineered for discipline, endurance, and relentless progress.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
