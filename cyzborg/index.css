@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Teko:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-cyzborg-black text-black dark:text-white transition-colors duration-300;
+  }
+  
+  /* Custom selection color */
+  ::selection {
+    background: #00AEEF;
+    color: #000;
+  }
+}
