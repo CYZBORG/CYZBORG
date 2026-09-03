@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
           inset: 0;
         }
         .hero-contrast-layer {
-          background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 40%, transparent 100%);
+          background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 40%, transparent 100%);
           inset: 0;
         }
         .hero-bottom-fade {
@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
           background: linear-gradient(to top, #000, transparent);
         }
         .hero-content-container {
-          padding-top: 14rem;
+          padding-top: 21rem;
           padding-left: 3rem;
           padding-right: 3rem;
           justify-content: center;
@@ -58,8 +58,11 @@ const Hero: React.FC = () => {
           margin-left: 0.5rem;
           margin-bottom: -1rem;
         }
+        .hero-top-text {
+          font-size: clamp(42px, 6vw, 95px);
+        }
         .hero-headline {
-          font-size: clamp(60px, 8.5vw, 150px);
+          font-size: clamp(80px, 10vw, 160px);
           line-height: 0.9;
         }
         .hero-subtitle-group {
@@ -73,8 +76,8 @@ const Hero: React.FC = () => {
           font-size: 1.25rem;
         }
         .hero-coming-date {
-          font-size: 1.5rem;
-          margin-top: 0.75rem;
+          font-size: 2.25rem;
+          margin-top: 1.5rem;
           margin-left: 2.5rem;
         }
         
@@ -132,7 +135,7 @@ const Hero: React.FC = () => {
             background-position: 85% top;
           }
           .hero-content-container {
-            padding-top: 17rem; /* Align AUGMENTED with Z logo */
+            padding-top: 23rem; /* Align AUGMENTED with Z logo */
             padding-left: 2rem;
             padding-right: 2rem;
           }
@@ -140,13 +143,16 @@ const Hero: React.FC = () => {
             font-size: 1rem;
             margin-bottom: -0.5rem;
           }
+          .hero-top-text {
+            font-size: 3.75rem;
+          }
           .hero-headline {
-            font-size: 5rem;
+            font-size: 6rem;
           }
           .hero-subtitle-group { margin-top: 2rem; }
-          .hero-subtitle-1 { font-size: 1.5rem; }
-          .hero-subtitle-2 { font-size: 1rem; }
-          .hero-coming-date { font-size: 1.25rem; margin-top: 0.5rem; }
+          .hero-subtitle-1 { font-size: 1.25rem; }
+          .hero-subtitle-2 { font-size: 0.875rem; }
+          .hero-coming-date { font-size: 1.5rem; margin-top: 0.75rem; }
           
           .release-dock-container {
             margin-top: auto;
@@ -186,7 +192,7 @@ const Hero: React.FC = () => {
             background-position: 75% top;
           }
           .hero-content-container {
-            padding-top: 38rem; /* Target Z logo tip + 24-32px */
+            padding-top: 42rem; /* Target Z logo tip + 24-32px */
             padding-bottom: 2rem;
             padding-left: 2.5rem;
             padding-right: 2.5rem;
@@ -197,8 +203,11 @@ const Hero: React.FC = () => {
             margin-bottom: -0.25rem;
             margin-left: 0.25rem;
           }
+          .hero-top-text {
+            font-size: 3.25rem;
+          }
           .hero-headline {
-            font-size: 5rem;
+            font-size: 5.5rem;
           }
           .hero-subtitle-group {
              margin-top: 1.25rem; /* ~20px below ATHLETE */
@@ -208,7 +217,7 @@ const Hero: React.FC = () => {
           }
           .hero-subtitle-1 { font-size: 1.25rem; }
           .hero-subtitle-2 { font-size: 0.95rem; }
-          .hero-coming-date { font-size: 1.125rem; margin-left: 1rem; margin-top: 0; }
+          .hero-coming-date { font-size: 1.5rem; margin-left: 1rem; margin-top: 1rem; }
           
           .release-dock-container {
             margin-top: auto;
@@ -266,7 +275,7 @@ const Hero: React.FC = () => {
             background: none;
           }
           .hero-content-container {
-            padding-top: 400px;
+            padding-top: 420px;
             padding-left: 20px;
             padding-right: 20px;
             justify-content: flex-start;
@@ -276,9 +285,13 @@ const Hero: React.FC = () => {
             margin-bottom: 2px;
             margin-left: 0;
           }
+          .hero-top-text {
+            font-size: clamp(28px, 8vw, 42px);
+          }
           .hero-headline {
-            font-size: clamp(52px, 16.5vw, 70px);
+            font-size: clamp(42px, 13vw, 72px);
             line-height: 0.86;
+            white-space: nowrap;
           }
           .hero-subtitle-group {
             margin-top: 1rem;
@@ -286,7 +299,7 @@ const Hero: React.FC = () => {
           }
           .hero-subtitle-1 { font-size: 17px; line-height: 1.45; }
           .hero-subtitle-2 { font-size: 13px; line-height: 1.55; }
-          .hero-coming-date { font-size: 16px; margin-left: 0; margin-top: 0.75rem; }
+          .hero-coming-date { font-size: 22px; margin-left: 0; margin-top: 1rem; }
           
           .release-dock-container {
             display: none;
@@ -339,20 +352,22 @@ const Hero: React.FC = () => {
             background-position: 75% top;
           }
           .hero-content-container {
-            padding-top: 10rem;
+            padding-top: 9.5rem;
             padding-left: 20px;
             padding-right: 20px;
             justify-content: flex-start;
           }
           .hero-primary-text {
-            width: 50%;
+            width: 65%;
           }
           .hero-the-label { font-size: 11px; margin-bottom: 2px; margin-left: 0; }
-          .hero-headline { font-size: clamp(38px, 7vw, 54px); line-height: 0.86; }
+          .hero-top-text { font-size: clamp(24px, 5.5vw, 32px); }
+          .hero-headline { font-size: clamp(36px, 9vw, 52px); line-height: 0.86; white-space: nowrap; }
           .hero-subtitle-group { margin-top: 0.75rem; gap: 0.25rem; }
           .hero-subtitle-1 { font-size: 15px; line-height: 1.4; }
+          .hero-subtitle-1 br { display: none !important; }
           .hero-subtitle-2 { font-size: 11px; line-height: 1.4; }
-          .hero-coming-date { font-size: 14px; margin-top: 0.5rem; margin-left: 0;}
+          .hero-coming-date { font-size: 20px; margin-top: 0.25rem; margin-left: 0;}
           
           .release-dock-container {
             display: none;
@@ -401,26 +416,76 @@ const Hero: React.FC = () => {
           
           {/* Primary Text */}
           <div className="hero-primary-text flex flex-col">
-            <h1 className="flex flex-col font-display font-bold uppercase drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
-              <span className="relative inline-block max-w-min">
-                <span className="hero-the-label block text-white font-sans font-bold tracking-[0.2em] md:tracking-[0.3em] md:text-transparent md:bg-clip-text md:bg-gradient-to-tr md:from-[#999999] md:via-[#E8E8E8] md:to-[#555555] z-10">
-                  THE
+            <h1 className="grid grid-cols-[1fr_auto] w-fit uppercase drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] text-white font-bebas">
+              {/* STRONGER. */}
+              <div className="flex justify-between w-full hero-top-text leading-[0.95] mb-0 md:-mb-2 items-baseline" style={{ paddingLeft: '20.5%' }}>
+                <span className="inline-flex justify-center">S</span>
+                <span className="inline-flex justify-center">T</span>
+                <span className="inline-flex justify-center">R</span>
+                <span className="inline-flex justify-center">O</span>
+                <span className="inline-flex justify-center">N</span>
+                <span className="inline-flex justify-center">G</span>
+                <span className="inline-flex justify-center">E</span>
+                <span className="inline-flex justify-center">R</span>
+              </div>
+              <div className="hero-top-text leading-[0.95] mb-0 md:-mb-2 flex items-baseline justify-start relative left-[0.08em]">.</div>
+
+              {/* SMARTER. */}
+              <div className="flex justify-between w-full hero-top-text leading-[0.95] mb-1 md:-mb-2 items-baseline" style={{ paddingLeft: '20.5%' }}>
+                <span className="inline-flex justify-center invisible pointer-events-none select-none">S</span>
+                
+                {/* S dead-center over T */}
+                <span className="inline-flex justify-center relative">
+                  <span className="invisible pointer-events-none select-none">T</span>
+                  <span className="absolute left-1/2 -translate-x-1/2 top-0">S</span>
                 </span>
-                <span className="hero-headline text-transparent bg-clip-text bg-gradient-to-tr from-[#999999] via-[#E8E8E8] to-[#555555] block tracking-normal max-w-full md:max-w-min" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.1)' }}>
-                  AUGMENTED
+                
+                {/* M flush left with first R */}
+                <span className="inline-flex justify-start relative">
+                  <span className="invisible pointer-events-none select-none">R</span>
+                  <span className="absolute left-0 top-0">M</span>
                 </span>
-              </span>
-              <span className="hero-headline text-transparent bg-clip-text bg-gradient-to-tr from-[#999999] via-[#E8E8E8] to-[#555555] block tracking-normal max-w-full md:max-w-min" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.1)' }}>
-                ATHLETE
-              </span>
+                
+                {/* A dead-center over O */}
+                <span className="inline-flex justify-center relative">
+                  <span className="invisible pointer-events-none select-none">O</span>
+                  <span className="absolute left-1/2 -translate-x-1/2 top-0">A</span>
+                </span>
+                
+                {/* R flush left with N */}
+                <span className="inline-flex justify-start relative">
+                  <span className="invisible pointer-events-none select-none">N</span>
+                  <span className="absolute left-0 top-0">R</span>
+                </span>
+                
+                {/* T dead-center over G */}
+                <span className="inline-flex justify-center relative">
+                  <span className="invisible pointer-events-none select-none">G</span>
+                  <span className="absolute left-1/2 -translate-x-1/2 top-0">T</span>
+                </span>
+                
+                {/* E and R just aligned normally for the rest */}
+                <span className="inline-flex justify-start relative">
+                  <span className="invisible pointer-events-none select-none">E</span>
+                  <span className="absolute left-0 top-0">E</span>
+                </span>
+                <span className="inline-flex justify-start relative">
+                  <span className="invisible pointer-events-none select-none">R</span>
+                  <span className="absolute left-0 top-0">R</span>
+                </span>
+              </div>
+              <div className="hero-top-text leading-[0.95] mb-1 md:-mb-2 flex items-baseline justify-start relative left-[0.08em]">.</div>
+
+              {/* MORE CAPABLE. */}
+              <div className="hero-headline leading-[0.85] md:leading-[0.8] flex justify-end items-baseline">
+                <span className="whitespace-nowrap" style={{ letterSpacing: '0.04em', marginRight: '-0.04em' }}>MORE CAPABLE</span>
+              </div>
+              <div className="hero-headline leading-[0.85] md:leading-[0.8] flex items-baseline justify-start relative left-[0]">.</div>
             </h1>
 
             <div className="hero-subtitle-group flex flex-col">
               <p className="hero-subtitle-1 text-neutral-300 uppercase tracking-widest md:tracking-[0.2em] font-medium">
-                MORE THAN HUMAN,<br className="block md:hidden" /><span className="hidden md:inline"> </span>BETTER THAN MACHINE.
-              </p>
-              <p className="hero-subtitle-2 text-neutral-400 uppercase tracking-wider md:tracking-[0.2em] font-medium">
-                GRAPHIC T-SHIRTS <span className="text-neutral-500 mx-1">&</span> PREMIUM FITNESS APPAREL
+                GRAPHIC T-SHIRTS <br className="block md:hidden" /><span className="text-neutral-500 md:ml-1 mr-1">&</span> PREMIUM FITNESS APPAREL
               </p>
               <p className="hero-coming-date font-bold text-[#00F0FF] uppercase tracking-[0.2em] md:tracking-[0.25em]">
                 COMING IN 2027
@@ -428,61 +493,6 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Release Dock */}
-          <div className="release-dock-container relative flex items-start w-full md:w-auto">
-            <div className="release-dock-bg absolute z-0 pointer-events-none"></div>
-            
-            <div className="release-dock-content relative z-10 flex w-full">
-              <div className="release-dock-left flex flex-col">
-                <p className="font-mono font-bold text-cyzborg-orange text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.15em] sm:tracking-[0.3em] mb-1 md:mb-1.5">
-                  NOW STREAMING
-                </p>
-                <h2 className="release-dock-title font-display font-bold text-white uppercase tracking-wider">
-                  MY BRAIN THINKS I’M A MONSTER
-                </h2>
-              </div>
-              
-              <div className="release-dock-controls flex w-full md:w-auto">
-                <button 
-                  onClick={scrollToSoundtrack}
-                  className="release-btn group relative flex items-center justify-center font-display font-bold text-black bg-white hover:bg-cyzborg-orange transition-all duration-300 uppercase tracking-widest shrink-0"
-                >
-                  VIEW RELEASE
-                  <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                
-                <div className="platform-grid">
-                  <a 
-                    href={RELEASE_LINKS.spotify}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="platform-link group flex items-center text-neutral-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-cyzborg-orange rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyzborg-orange focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  >
-                    <FaSpotify className="platform-icon shrink-0" />
-                    <span className="platform-label font-mono tracking-wider uppercase">Spotify</span>
-                  </a>
-                  <a 
-                    href={RELEASE_LINKS.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="platform-link group flex items-center text-neutral-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-cyzborg-orange rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyzborg-orange focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  >
-                    <FaYoutube className="platform-icon shrink-0" />
-                    <span className="platform-label font-mono tracking-wider uppercase">YouTube<br className="yt-break" /><span className="hidden md:inline"> </span>Music</span>
-                  </a>
-                  <a 
-                    href={RELEASE_LINKS.apple}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="platform-link group flex items-center text-neutral-300 hover:text-white transition-colors border-b-2 border-transparent hover:border-cyzborg-orange rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyzborg-orange focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  >
-                    <FaApple className="platform-icon shrink-0" />
-                    <span className="platform-label font-mono tracking-wider uppercase">Apple<br className="apple-break" /><span className="hidden md:inline"> </span>Music</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </>

@@ -49,7 +49,7 @@ const Newsletter: React.FC = () => {
       {/* Scattered LED Logo */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-0">
         <img loading="lazy" decoding="async" 
-          src="https://helmet-with-logo.netlify.app/cyzborg-lightning.svg" 
+          src="https://helmet-with-logo.netlify.app/cyzborg-wordmark.svg" 
           className="dark:invert-0 invert w-[800px] md:w-[1200px] lg:w-[1500px] opacity-[0.04] dark:opacity-[0.02] -rotate-[8deg] select-none max-w-none"
           alt=""
         />

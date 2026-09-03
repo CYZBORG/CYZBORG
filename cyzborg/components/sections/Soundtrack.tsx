@@ -11,8 +11,28 @@ const MONSTER_RELEASE_LINKS = {
 
 const TRACKS = [
   {
-    id: 'monster',
+    id: 'fbm',
     label: 'NEW RELEASE',
+    titleText: 'FEARED BY MANY. LOVED BY DOGS.',
+    title: (
+      <>
+        FEARED BY MANY.<br />
+        <span className="text-neutral-500">LOVED BY DOGS.</span>
+      </>
+    ),
+    coverUrl: 'https://helmet-with-logo.netlify.app/fbm-album.png',
+    spotifyUrl: 'https://open.spotify.com/track/1Wwy1LXODrHkkYAJGRkwoP?si=c53ce8ceaa084419',
+    youtubeUrl: 'https://music.youtube.com/watch?v=HlkEyus0T4Q&si=M7garPC2aU7H19fb',
+    appleUrl: 'https://music.apple.com/us/song/feared-by-many-loved-by-dogs/6806499742',
+    description: (
+      <div className="text-sm sm:text-base md:text-lg lg:text-base xl:text-lg 2xl:text-xl text-[#A6A6A6] leading-[1.6]">
+        <p>People see the size, the scars, and the hard exterior, then decide who you are before you say a word. Dogs don’t. They see past appearances and recognize the hand, the heart, and the character underneath. From predawn miles to late-night sessions under the iron, you keep moving without applause or approval. Let the world stare. Let them talk. Let them judge. If a dog trusts you, who gives a fuck who doesn’t?</p>
+      </div>
+    ),
+    embedUrl: 'https://open.spotify.com/embed/track/1Wwy1LXODrHkkYAJGRkwoP?utm_source=generator&theme=0'
+  },
+  {
+    id: 'monster',
     titleText: 'MY BRAIN THINKS I’M A MONSTER',
     title: (
       <>

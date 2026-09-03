@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
            <img loading="lazy" decoding="async" 
-            src="https://helmet-with-logo.netlify.app/cyzborg-lightning.svg" 
+            src="https://helmet-with-logo.netlify.app/cyzborg-wordmark.svg" 
             alt="CYZBORG" 
             className="w-auto h-[60px] md:h-20 opacity-90 hover:opacity-100 hover:scale-[1.03] transition-all duration-300 origin-center dark:invert-0 invert"
            />

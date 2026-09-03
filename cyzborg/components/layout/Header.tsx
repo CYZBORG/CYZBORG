@@ -51,7 +51,7 @@ const Header: React.FC = () => {
           >
             {/* Name Logo */}
             <img 
-              src="https://helmet-with-logo.netlify.app/cyzborg-lightning.svg" 
+              src="https://helmet-with-logo.netlify.app/cyzborg-wordmark.svg" 
               alt="CYZBORG" 
               className={`w-[135px] sm:w-[150px] md:w-auto h-auto md:h-[60px] lg:h-20 opacity-90 hover:opacity-100 hover:scale-[1.03] transition-all duration-300 origin-left md:origin-center invert-0`}
             />
