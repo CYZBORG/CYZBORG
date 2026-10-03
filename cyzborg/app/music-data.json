@@ -1,0 +1,143 @@
+{
+  "albums": [
+    {
+      "id": "pnr",
+      "label": "NEW RELEASE • TWO-TRACK RELEASE",
+      "titleText": "PSYCHOTIC Dancing",
+      "coverUrl": "/album-pnr.jpg",
+      "spotifyUrl": "#",
+      "youtubeUrl": "#",
+      "appleUrl": "#",
+      "description": [
+        "TWO SIDES OF THE SAME WORKOUT.",
+        "One side is locked in. Heavy weight, dark thoughts, controlled aggression.",
+        "The other catches the right song between sets and stops taking the whole damn gym so seriously.",
+        "PSYCHOTIC Dancing puts both sides together. The intensity that gets you through the set and the energy that keeps you moving when the weight hits the floor."
+      ],
+      "embedUrl": ""
+    },
+    {
+      "id": "fbm",
+      "titleText": "FEARED BY MANY. LOVED BY DOGS.",
+      "coverUrl": "/album-fbm.png",
+      "spotifyUrl": "https://open.spotify.com/track/1Wwy1LXODrHkkYAJGRkwoP?si=c53ce8ceaa084419",
+      "youtubeUrl": "https://music.youtube.com/watch?v=HlkEyus0T4Q&si=M7garPC2aU7H19fb",
+      "appleUrl": "https://music.apple.com/us/song/feared-by-many-loved-by-dogs/6806499742",
+      "description": [
+        "People see the size, the scars, and the hard exterior, then decide who you are before you say a word. Dogs don’t. They see past appearances and recognize the hand, the heart, and the character underneath. From predawn miles to late-night sessions under the iron, you keep moving without applause or approval. Let the world stare. Let them talk. Let them judge. If a dog trusts you, who gives a fuck who doesn’t?"
+      ],
+      "embedUrl": "https://open.spotify.com/embed/track/1Wwy1LXODrHkkYAJGRkwoP?utm_source=generator&theme=0"
+    },
+    {
+      "id": "monster",
+      "titleText": "MY BRAIN THINKS I’M A MONSTER",
+      "coverUrl": "/album-monster.png",
+      "spotifyUrl": "https://open.spotify.com/track/2PzkJcUb8dvhyqCetBSl1M?si=9d8d21dc549b4c5b",
+      "youtubeUrl": "https://music.youtube.com/playlist?list=OLAK5uy_lRQzeVXLtS2JAWR8NnbvO4g3gEUmY5vOI&si=X8-vtFatE4CLl45r",
+      "appleUrl": "https://music.apple.com/us/song/my-brain-thinks-im-a-monster/6798165774",
+      "description": [
+        "The voice in your head tells you to slow down, be normal, skip the workout, stop obsessing, and take it easy. Instead, you grab the pre-workout, count the macros, weigh the food, load another plate, and keep going. It is discipline taken so far that even your own mind starts wondering what the hell you have become."
+      ],
+      "embedUrl": "https://open.spotify.com/embed/track/2PzkJcUb8dvhyqCetBSl1M?utm_source=generator&theme=0"
+    },
+    {
+      "id": "mthbtm",
+      "titleText": "MORE THAN HUMAN, BETTER THAN MACHINE",
+      "coverUrl": "/album-mthbtm.png",
+      "spotifyUrl": "https://open.spotify.com/track/6v4PY5aoN1bmkW9AgQhyJx?si=ef47cb0647094c28",
+      "youtubeUrl": "https://music.youtube.com/playlist?list=OLAK5uy_kBVQjEO4mynCh4d0vZAokOvsMsyxNyQIc&si=u26lfnShUD1SefiN",
+      "appleUrl": "https://music.apple.com/sa/song/more-than-human-better-than-machine/6793851284",
+      "description": [
+        "The official anthem of CYZBORG. Built by pressure, forged by pain, and strengthened by every scar, it represents the relentless pursuit of becoming more without losing the heart, soul, and will that no machine can replicate."
+      ],
+      "embedUrl": "https://open.spotify.com/embed/track/6v4PY5aoN1bmkW9AgQhyJx?utm_source=generator&theme=0"
+    },
+    {
+      "id": "utb",
+      "titleText": "UNDER THE BAR",
+      "coverUrl": "/album-utb.jpg",
+      "spotifyUrl": "https://open.spotify.com/track/66C6QcaaqHhwmsLs6ijoWs?si=90a4f6643e364ff8",
+      "youtubeUrl": "https://www.youtube.com/watch?v=HbAxN9m4jzk",
+      "appleUrl": "https://music.apple.com/sa/album/under-the-bar-single/6791034280",
+      "description": [
+        "A raw, uncompromising anthem for the heavy iron. When the weight threatens to crush you, there is no room for hesitation, excuses, or fear. Lock in, get under the bar, and prove what you're made of."
+      ],
+      "embedUrl": "https://open.spotify.com/embed/track/66C6QcaaqHhwmsLs6ijoWs?utm_source=generator&theme=0"
+    },
+    {
+      "id": "rtg",
+      "titleText": "RUN THE GAUNTLET",
+      "coverUrl": "/album-rtg.jpg",
+      "spotifyUrl": "https://open.spotify.com/track/1GCbDeNYLEfIECES5CUDWs?si=caf820a9cd954472",
+      "youtubeUrl": "https://music.youtube.com/watch?v=G5lwEvPGq4w&si=-WI3MRp5hIU6VrJD",
+      "appleUrl": "https://music.apple.com/us/album/run-the-gauntlet-single/6789544340",
+      "description": [
+        "A brutal war march for those who refuse to break. When the world collapses into chaos, you don't look for a way out—you force your way through the wreckage."
+      ],
+      "embedUrl": "https://open.spotify.com/embed/track/1GCbDeNYLEfIECES5CUDWs?utm_source=generator&theme=0"
+    },
+    {
+      "id": "dysmorphia",
+      "titleText": "DYSMORPHIA",
+      "coverUrl": "/album-dysmorphia.png",
+      "spotifyUrl": "https://open.spotify.com/track/05CHpPg5ZX54OUheazmtxV?si=d38f862cb16b4f66",
+      "youtubeUrl": "https://music.youtube.com/watch?v=RQIz5vsp7dc&si=tpAkC8E_2tH-YMxW",
+      "appleUrl": "https://music.apple.com/us/song/dysmorphia/6789440215",
+      "description": [
+        "The ultimate visual and physical confrontation. A heavy, unforgiving strike against the mirror, the doubt, and the perceived weakness within. Stop hiding, endure the pressure, and outwork your own mind."
+      ],
+      "embedUrl": "https://open.spotify.com/embed/track/05CHpPg5ZX54OUheazmtxV?utm_source=generator&theme=0"
+    },
+    {
+      "id": "fyf",
+      "titleText": "FUCK YOUR FEELINGS",
+      "coverUrl": "/album-fyf.png",
+      "spotifyUrl": "https://open.spotify.com/album/4MIKxWNZam7Dr9T5yOFcMo",
+      "youtubeUrl": "https://music.youtube.com/watch?v=PYTFLEAOpnA&list=OLAK5uy_lFD6iAKpLXocqvUcYF4ShOxgO0FND99JI",
+      "appleUrl": "https://music.apple.com/us/album/f-k-your-feelings-single/6782700672",
+      "description": [
+        "A middle finger to weakness, victimhood, and self-imposed limits. Turn off the noise, embrace the struggle, and earn your results."
+      ],
+      "embedUrl": "https://open.spotify.com/embed/album/4MIKxWNZam7Dr9T5yOFcMo?utm_source=generator&theme=0"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "pnr-1",
+      "number": "01",
+      "name": "PSYCHOTIC. NOT ROBOTIC.",
+      "spotifyUrl": "https://open.spotify.com/track/4QqhEUpS8RVaeX7yEEOvgv?si=fa2143e4fec84129",
+      "youtubeUrl": "https://music.youtube.com/watch?v=s7wmiy8xo_c&si=_jE8rLybAJUSu_U8",
+      "appleUrl": "https://music.apple.com/us/song/psychotic-not-robotic/6813677979",
+      "embedUrl": "https://open.spotify.com/embed/track/4QqhEUpS8RVaeX7yEEOvgv?utm_source=generator&theme=0",
+      "description": [
+        "This song is about refusing to train on autopilot. No going through the motions. No dead-eyed reps. No mechanical bullshit. It is about turning the switch, bringing aggression into the room, pushing past comfortable, and attacking the workout with enough energy to make it feel a little unhinged. Go harder. Get louder. Lose your mind for the set, then come back for another."
+      ]
+    },
+    {
+      "id": "pnr-2",
+      "number": "02",
+      "name": "Dancing Between Sets",
+      "spotifyUrl": "https://open.spotify.com/track/4gR0Tv8DozzlqH7kSt9K8b?si=9d744432f8d04344",
+      "youtubeUrl": "https://music.youtube.com/watch?v=fIi97je_6Mc&si=y3_tANQOnmvcs5O5",
+      "appleUrl": "https://music.apple.com/us/song/dancing-between-sets/6813677980",
+      "embedUrl": "https://open.spotify.com/embed/track/4gR0Tv8DozzlqH7kSt9K8b?utm_source=generator&theme=0",
+      "description": [
+        "The set ends, the weight hits the rack, and then the right track comes on. Suddenly you are not just standing there waiting for the next set. The shoulders start rolling, the feet start moving, maybe there is a little bounce, and before you know it, a head nod turns into a full rhythm. For a few seconds, the gym stops feeling so serious. The beat keeps going, the rest time ends, and it is right back to work. Catch the beat. Move a little. Reset. Do it again."
+      ]
+    }
+  ],
+  "fanFavorite": {
+    "id": "mbfhm",
+    "label": "FAN FAVORITE",
+    "titleText": "MY BODY FUCKING HATES ME",
+    "coverUrl": "/album-mbfhm.png",
+    "description": [
+      "The first remastered sonic weapon from the CYZBORG system. Brutal, relentless, and engineered for the hardest training sessions."
+    ],
+    "spotifyUrl": "https://open.spotify.com/album/2fRmqckKwmi9PT6njHrhb7",
+    "youtubeUrl": "https://music.youtube.com/watch?v=f3BG_CWdcIs&list=OLAK5uy_k3GSHs1_Sr2D1daHRzz9CD5xgefQWxu64",
+    "appleUrl": "https://music.apple.com/us/album/my-body-f-g-hates-me-single/6780128308",
+    "embedUrl": "https://open.spotify.com/embed/album/2fRmqckKwmi9PT6njHrhb7?utm_source=generator&theme=0"
+  }
+}
