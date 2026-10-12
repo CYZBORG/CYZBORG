@@ -15,17 +15,24 @@ function ReleaseFeature({album,fan=false,active=true}:{album:Release;fan?:boolea
   useEffect(()=>{if(!active){setPlaying(false);setTrack(null);}},[active]);
   const selected = album.id==="pnr" && track!==null?catalog.tracks[track]:album;
   const name = "name" in selected?selected.name:album.titleText;
-  return <div className={`release-feature ${fan?"fan-feature":""} ${album.id==="pnr"?"psychotic-feature":""}`}>
+  return <div className={`release-feature ${fan?"fan-feature":""} ${album.id==="pnr"?"psychotic-feature":""} ${selected.description.join(" ").length<250?"short-description":""}`}>
     <div className="release-art">{playing&&selected.embedUrl?<Player audio={selected} onClose={()=>setPlaying(false)}/>:<><img src={album.coverUrl} alt={`${album.titleText} cover art`} loading="lazy"/>{selected.embedUrl&&<button className="cover-play" onClick={()=>setPlaying(true)} aria-label={`Listen to ${name}`}><Play size={22} fill="currentColor"/></button>}</>}</div>
-    <div className="release-copy"><p className="eyebrow">{fan?"FAN FAVORITE":album.label||"AUDIO TRANSMISSION"}</p><h3>{album.id==="pnr"&&track===null?<><span className="brand-blue">PSYCHOTIC</span> <span className="brand-copper">Dancing</span></>:name}</h3><div className="release-description">{selected.description.map((p,i)=><p key={i}>{p}</p>)}</div>
+    <div className="release-copy"><h3>{album.id==="pnr"&&track===null?<><span className="brand-blue">PSYCHOTIC</span> <span className="brand-copper">Dancing</span></>:name}</h3>{(fan||album.label)&&<p className="release-label">{fan?"FAN FAVORITE":album.label}</p>}<div className="release-description">{selected.description.map((p,i)=><p key={i}>{p}</p>)}</div>
       {album.id==="pnr"&&<div className="track-list" aria-label="Album tracks">{catalog.tracks.map((t,i)=><div className={`track-row ${track===i?"active":""}`} key={t.id}><button className="track-name" onClick={()=>{setTrack(i);setPlaying(false);}} aria-pressed={track===i}><span>{t.number}</span>{t.name}</button><button className="track-play" onClick={()=>{setTrack(i);setPlaying(true);}} aria-label={`Listen to ${t.name}`}><Play size={15} fill="currentColor"/> LISTEN</button></div>)}{track!==null&&<button className="text-button" onClick={()=>{setTrack(null);setPlaying(false);}}>Album Overview</button>}</div>}
-      <Platforms audio={selected} onPlay={album.id==="pnr"&&track!==null&&selected.embedUrl&&!playing?()=>setPlaying(true):undefined}/>
+      <div className="release-listening"><Platforms audio={selected} onPlay={album.id==="pnr"&&track!==null&&selected.embedUrl&&!playing?()=>setPlaying(true):undefined}/>
       {!(album.id==="pnr"&&track!==null)&&selected.embedUrl&&!playing&&<button className="button outline inline-listen" onClick={()=>setPlaying(true)}><Play size={14} fill="currentColor"/> Play</button>}
-    </div>
+    </div></div>
   </div>;
 }
 export default function Music(){
   const [index,setIndex]=useState(0);
+  const [wide,setWide]=useState(false);
+  useEffect(()=>{
+    const media=window.matchMedia("(min-width: 1800px)");
+    const update=()=>setWide(media.matches);
+    update();media.addEventListener("change",update);
+    return ()=>media.removeEventListener("change",update);
+  },[]);
   const [direction,setDirection]=useState("next");
   const [railIndex,setRailIndex]=useState(0);
   const [outgoing,setOutgoing]=useState<number|null>(null);
@@ -51,7 +58,7 @@ export default function Music(){
   return <>
     <section id="music" className="music-catalog section-block"><img className="music-brand-art" src="/detailed-helmet.svg" alt="" aria-hidden="true" loading="lazy"/><div className="shell"><div className="music-heading"><div><h2>AUDIO</h2></div><div className="catalog-controls"><span>{String(index+1).padStart(2,"0")} / {String(catalog.albums.length).padStart(2,"0")}</span></div></div>
       <div className={`release-stage direction-${direction}`}>{catalog.albums.map(a=><div key={`sizer-${a.id}`} className="release-slide" aria-hidden="true" inert><ReleaseFeature album={a} active={false}/></div>)}{outgoing!==null&&<div key={`outgoing-${catalog.albums[outgoing].id}`} className="release-slide outgoing" aria-hidden="true" inert><ReleaseFeature album={catalog.albums[outgoing]} active={false}/></div>}<div key={`active-${catalog.albums[index].id}`} className="release-slide active"><ReleaseFeature album={catalog.albums[index]}/></div></div>
-      <div className="album-browser"><div className="album-browser-heading"><p>ALBUMS</p><span></span></div><div ref={browser} className="album-window" onKeyDown={e=>{if(e.key==="ArrowLeft"){e.preventDefault();change(index-1);}if(e.key==="ArrowRight"){e.preventDefault();change(index+1);}}}><button className="album-arrow previous" disabled={moving} onClick={()=>change(index-1)} aria-label="Previous album"><ChevronLeft/></button><div className="album-viewport"><div className={`album-rail ${moving?`moving-${direction}`:""}`} role="group" aria-label="CYZBORG releases">{[-2,-1,0,1,2].map(offset=>{const i=(railIndex+offset+catalog.albums.length)%catalog.albums.length;const a=catalog.albums[i];return <button key={a.id} data-album-index={i} className={`album-option ${i===index?"selected":""}`} aria-pressed={i===index} disabled={moving} tabIndex={Math.abs(offset)>1?-1:0} aria-hidden={Math.abs(offset)>1} onClick={()=>change(index+(offset))}><img src={a.coverUrl} alt="" loading="lazy"/><span>{a.titleText}</span><small aria-hidden={i!==0}>{i===0?"NEW RELEASE":" "}</small></button>;})}</div></div><button className="album-arrow next" disabled={moving} onClick={()=>change(index+1)} aria-label="Next album"><ChevronRight/></button></div></div>
+      <div className="album-browser"><div className="album-browser-heading"><p>ALBUMS</p><span></span></div><div ref={browser} className="album-window" onKeyDown={e=>{if(e.key==="ArrowLeft"){e.preventDefault();change(index-1);}if(e.key==="ArrowRight"){e.preventDefault();change(index+1);}}}><button className="album-arrow previous" disabled={moving} onClick={()=>change(index-1)} aria-label="Previous album"><ChevronLeft/></button><div className="album-viewport"><div className={`album-rail ${moving?`moving-${direction}`:""}`} role="group" aria-label="CYZBORG releases">{(wide?[-3,-2,-1,0,1,2,3]:[-2,-1,0,1,2]).map(offset=>{const i=(railIndex+offset+catalog.albums.length)%catalog.albums.length;const a=catalog.albums[i];return <button key={a.id} data-album-index={i} className={`album-option ${i===index?"selected":""}`} aria-pressed={i===index} disabled={moving} tabIndex={Math.abs(offset)>(wide?2:1)?-1:0} aria-hidden={Math.abs(offset)>(wide?2:1)} onClick={()=>change(index+(offset))}><img src={a.coverUrl} alt="" loading="lazy"/><span>{a.titleText}</span><small aria-hidden={i!==0}>{i===0?"NEW RELEASE":" "}</small></button>;})}</div></div><button className="album-arrow next" disabled={moving} onClick={()=>change(index+1)} aria-label="Next album"><ChevronRight/></button></div></div>
     </div></section>
     <section className="fan-favorite section-block" id="fan-favorite"><div className="shell"><ReleaseFeature album={catalog.fanFavorite} fan/></div></section>
   </>;
