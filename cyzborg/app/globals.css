@@ -270,3 +270,6 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 @media(prefers-reduced-motion:reduce){.platforms a.platform-link:after{transition:none}}
 /* Keep the athlete (print ≈70% across the photo) in frame at any panel width */
 .apparel-media{--mw:max(100cqw,200cqh);left:clamp(calc(100cqw - var(--mw)),calc(66cqw - .7 * var(--mw)),0px);transform:translate(0,-25%)}
+/* Brand color on the icon only; names stay white */
+.platforms a.platform-link{color:#fff}
+.platforms a.platform-link svg{fill:var(--platform)}
