@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, AudioLines } from "lucide-react";
+import { useAudioDock } from "@/components/audio-dock";
 import catalog from "@/app/music-data.json";
 
 type Audio = {id:string; spotifyUrl:string; youtubeUrl:string; appleUrl:string; embedUrl:string; description:string[]};
@@ -8,19 +9,20 @@ type Release = Audio & {titleText:string;coverUrl:string;label?:string};
 function Platforms({audio,onPlay}:{audio:Audio;onPlay?:()=>void}) {
   return <div className="streaming-links"><p>Now streaming on major platforms:</p><div className="platforms">{[["Spotify",audio.spotifyUrl],["Apple Music",audio.appleUrl],["YouTube Music",audio.youtubeUrl]].filter(([,url])=>url&&url!=="#").map(([name,url])=><a key={name} href={url} target="_blank" rel="noreferrer">{name}</a>)}{onPlay&&<button className="button outline inline-listen" onClick={onPlay}><Play size={14} fill="currentColor"/> Play</button>}</div></div>;
 }
-function Player({audio,onClose}:{audio:Audio;onClose:()=>void}){return <div className="music-player"><button className="player-close" onClick={onClose} aria-label="Close music player"><X size={18}/></button><iframe title={`Spotify player for ${audio.id}`} src={audio.embedUrl} width="100%" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" /></div>;}
 function ReleaseFeature({album,fan=false,active=true}:{album:Release;fan?:boolean;active?:boolean}) {
   const [track,setTrack]=useState<number|null>(null);
-  const [playing,setPlaying]=useState(false);
-  useEffect(()=>{if(!active){setPlaying(false);setTrack(null);}},[active]);
+  const dock=useAudioDock();
+  useEffect(()=>{if(!active)setTrack(null);},[active]);
   const selected = album.id==="pnr" && track!==null?catalog.tracks[track]:album;
   const name = "name" in selected?selected.name:album.titleText;
+  const playing = dock.current?.id===selected.id;
+  const play = (audio:Audio=selected,title:string=name)=>{if(audio.embedUrl)dock.play({id:audio.id,title,embedUrl:audio.embedUrl});};
   return <div className={`release-feature ${fan?"fan-feature":""} ${album.id==="pnr"?"psychotic-feature":""} ${selected.description.join(" ").length<250?"short-description":""}`}>
-    <div className="release-art">{playing&&selected.embedUrl?<Player audio={selected} onClose={()=>setPlaying(false)}/>:<><img src={album.coverUrl} alt={`${album.titleText} cover art`} loading="lazy"/>{selected.embedUrl&&<button className="cover-play" onClick={()=>setPlaying(true)} aria-label={`Listen to ${name}`}><Play size={22} fill="currentColor"/></button>}</>}</div>
+    <div className="release-art"><img src={album.coverUrl} alt={`${album.titleText} cover art`} loading="lazy"/>{selected.embedUrl&&<button className={`cover-play ${playing?"is-playing":""}`} onClick={()=>play()} aria-label={playing?`${name} is in the audio player`:`Listen to ${name}`}>{playing?<AudioLines size={22}/>:<Play size={22} fill="currentColor"/>}</button>}</div>
     <div className="release-copy"><h3>{album.id==="pnr"&&track===null?<><span className="brand-blue">PSYCHOTIC</span> <span className="brand-copper">Dancing</span></>:name}</h3>{(fan||album.label)&&<p className="release-label">{fan?"FAN FAVORITE":album.label}</p>}<div className="release-description">{selected.description.map((p,i)=><p key={i}>{p}</p>)}</div>
-      {album.id==="pnr"&&<div className="track-list" aria-label="Album tracks">{catalog.tracks.map((t,i)=><div className={`track-row ${track===i?"active":""}`} key={t.id}><button className="track-name" onClick={()=>{setTrack(i);setPlaying(false);}} aria-pressed={track===i}><span>{t.number}</span>{t.name}</button><button className="track-play" onClick={()=>{setTrack(i);setPlaying(true);}} aria-label={`Listen to ${t.name}`}><Play size={15} fill="currentColor"/> LISTEN</button></div>)}{track!==null&&<button className="text-button" onClick={()=>{setTrack(null);setPlaying(false);}}>Album Overview</button>}</div>}
-      <div className="release-listening"><Platforms audio={selected} onPlay={album.id==="pnr"&&track!==null&&selected.embedUrl&&!playing?()=>setPlaying(true):undefined}/>
-      {!(album.id==="pnr"&&track!==null)&&selected.embedUrl&&!playing&&<button className="button outline inline-listen" onClick={()=>setPlaying(true)}><Play size={14} fill="currentColor"/> Play</button>}
+      {album.id==="pnr"&&<div className="track-list" aria-label="Album tracks">{catalog.tracks.map((t,i)=><div className={`track-row ${track===i?"active":""}`} key={t.id}><button className="track-name" onClick={()=>setTrack(i)} aria-pressed={track===i}><span>{t.number}</span>{t.name}</button><button className="track-play" onClick={()=>{setTrack(i);play(t,t.name);}} aria-label={`Listen to ${t.name}`}><Play size={15} fill="currentColor"/> LISTEN</button></div>)}{track!==null&&<button className="text-button" onClick={()=>setTrack(null)}>Album Overview</button>}</div>}
+      <div className="release-listening"><Platforms audio={selected} onPlay={album.id==="pnr"&&track!==null&&selected.embedUrl&&!playing?()=>play():undefined}/>
+      {!(album.id==="pnr"&&track!==null)&&selected.embedUrl&&!playing&&<button className="button outline inline-listen" onClick={()=>play()}><Play size={14} fill="currentColor"/> Play</button>}
     </div></div>
   </div>;
 }

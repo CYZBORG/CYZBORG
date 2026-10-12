@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T21:48:55.325279+00:00",
+  "title": "Design System: CYZBORG",
+  "extensions": {
+    "colorMeta": {
+      "copper": {
+        "role": "primary",
+        "displayName": "Training Copper",
+        "canonical": "#b87333",
+        "tonalRamp": [
+          "oklch(15% 0.115 60)",
+          "oklch(25% 0.115 60)",
+          "oklch(35% 0.115 60)",
+          "oklch(45% 0.115 60)",
+          "oklch(55% 0.115 60)",
+          "oklch(65% 0.115 60)",
+          "oklch(80% 0.115 60)",
+          "oklch(95% 0.115 60)"
+        ]
+      },
+      "copper-text": {
+        "role": "primary",
+        "displayName": "Readable Copper",
+        "canonical": "#db9a60",
+        "tonalRamp": [
+          "oklch(15% 0.115 60)",
+          "oklch(25% 0.115 60)",
+          "oklch(35% 0.115 60)",
+          "oklch(45% 0.115 60)",
+          "oklch(55% 0.115 60)",
+          "oklch(65% 0.115 60)",
+          "oklch(80% 0.115 60)",
+          "oklch(95% 0.115 60)"
+        ]
+      },
+      "copper-hover": {
+        "role": "primary",
+        "displayName": "Copper Hover",
+        "canonical": "#d99a60",
+        "tonalRamp": [
+          "oklch(15% 0.11 60)",
+          "oklch(25% 0.11 60)",
+          "oklch(35% 0.11 60)",
+          "oklch(45% 0.11 60)",
+          "oklch(55% 0.11 60)",
+          "oklch(65% 0.11 60)",
+          "oklch(80% 0.11 60)",
+          "oklch(95% 0.11 60)"
+        ]
+      },
+      "blue": {
+        "role": "secondary",
+        "displayName": "CYZBORG Blue",
+        "canonical": "#00a3ff",
+        "tonalRamp": [
+          "oklch(15% 0.17 240)",
+          "oklch(25% 0.17 240)",
+          "oklch(35% 0.17 240)",
+          "oklch(45% 0.17 240)",
+          "oklch(55% 0.17 240)",
+          "oklch(65% 0.17 240)",
+          "oklch(80% 0.17 240)",
+          "oklch(95% 0.17 240)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Black",
+        "canonical": "#000",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(55% 0 0)",
+          "oklch(65% 0 0)",
+          "oklch(80% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Charcoal",
+        "canonical": "#101010",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(55% 0 0)",
+          "oklch(65% 0 0)",
+          "oklch(80% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "media-surface": {
+        "role": "neutral",
+        "displayName": "Media Charcoal",
+        "canonical": "#151515",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(55% 0 0)",
+          "oklch(65% 0 0)",
+          "oklch(80% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#fff",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(55% 0 0)",
+          "oklch(65% 0 0)",
+          "oklch(80% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Gray",
+        "canonical": "#b6b6b6",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(55% 0 0)",
+          "oklch(65% 0 0)",
+          "oklch(80% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Quiet Line",
+        "canonical": "#ffffff26",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(55% 0 0)",
+          "oklch(65% 0 0)",
+          "oklch(80% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "selected-surface": {
+        "role": "neutral",
+        "displayName": "Selected Copper Surface",
+        "canonical": "#342316",
+        "tonalRamp": [
+          "oklch(15% 0.045 60)",
+          "oklch(25% 0.045 60)",
+          "oklch(35% 0.045 60)",
+          "oklch(45% 0.045 60)",
+          "oklch(55% 0.045 60)",
+          "oklch(65% 0.045 60)",
+          "oklch(80% 0.045 60)",
+          "oklch(95% 0.045 60)"
+        ]
+      },
+      "audio-hover": {
+        "role": "secondary",
+        "displayName": "Audio Hover",
+        "canonical": "#07344d",
+        "tonalRamp": [
+          "oklch(15% 0.06 240)",
+          "oklch(25% 0.06 240)",
+          "oklch(35% 0.06 240)",
+          "oklch(45% 0.06 240)",
+          "oklch(55% 0.06 240)",
+          "oklch(65% 0.06 240)",
+          "oklch(80% 0.06 240)",
+          "oklch(95% 0.06 240)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Section Headline",
+        "purpose": "Oswald section display."
+      },
+      "release-title": {
+        "displayName": "Release Title",
+        "purpose": "Audio feature headings."
+      },
+      "product-title": {
+        "displayName": "Product Title",
+        "purpose": "Garment names."
+      },
+      "body": {
+        "displayName": "Supporting Body",
+        "purpose": "Rajdhani prose."
+      },
+      "label": {
+        "displayName": "Action Label",
+        "purpose": "Primary and outlined actions."
+      }
+    },
+    "shadows": [
+      {
+        "name": "attached-menu",
+        "value": "0 14px 30px #0006",
+        "purpose": "Attached menu isolation."
+      },
+      {
+        "name": "dialog",
+        "value": "0 24px 80px #0009",
+        "purpose": "Native dialog isolation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.23,1,.32,1)",
+        "purpose": "Directional navigation and state response."
+      },
+      {
+        "name": "control",
+        "value": "160ms",
+        "purpose": "Interactive control changes."
+      },
+      {
+        "name": "header",
+        "value": "180ms",
+        "purpose": "Scrolled header background."
+      },
+      {
+        "name": "menu",
+        "value": "200ms",
+        "purpose": "Attached menu opening."
+      },
+      {
+        "name": "product-image",
+        "value": "240ms",
+        "purpose": "Restrained garment hover scale."
+      },
+      {
+        "name": "category-image",
+        "value": "300ms",
+        "purpose": "Photographic category hover scale."
+      },
+      {
+        "name": "album-navigation",
+        "value": "480ms",
+        "purpose": "Directional release and album rail transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow-phone-max",
+        "value": "359px"
+      },
+      {
+        "name": "phone-max",
+        "value": "479px"
+      },
+      {
+        "name": "mobile-max",
+        "value": "767px"
+      },
+      {
+        "name": "tablet-max",
+        "value": "1023px"
+      },
+      {
+        "name": "compact-header-max",
+        "value": "1279px"
+      },
+      {
+        "name": "wide-min",
+        "value": "1800px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Copper launch and subscription action.",
+      "html": "<button class=\"ds-primary\">LAUNCH</button>",
+      "css": ".ds-primary{font-family:var(--body,Rajdhani,Arial,sans-serif);font-weight:700;font-size:16px;letter-spacing:.05em;min-height:50px;padding:13px 28px;border-radius:12px;border:1px solid transparent;cursor:pointer;transition:background 160ms ease,border-color 160ms ease,transform 160ms cubic-bezier(.23,1,.32,1);background:var(--copper,#b87333);color:var(--bg,#000)}@media(hover:hover) and (pointer:fine){.ds-primary:hover{background:#d99a60;border-color:#d99a60}}.ds-primary:active{transform:scale(.97)}.ds-primary:focus-visible{outline:2px solid var(--blue,#00a3ff);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none;animation:none}}"
+    },
+    {
+      "name": "Outlined Audio Action",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action with blue hover.",
+      "html": "<button class=\"ds-outline\">AUDIO</button>",
+      "css": ".ds-outline{font-family:var(--body,Rajdhani,Arial,sans-serif);font-weight:700;font-size:16px;letter-spacing:.05em;min-height:50px;padding:13px 28px;border-radius:12px;border:1px solid transparent;cursor:pointer;transition:background 160ms ease,border-color 160ms ease,transform 160ms cubic-bezier(.23,1,.32,1);background:#08080880;color:var(--ink,#fff);border-color:#ffffff65}@media(hover:hover) and (pointer:fine){.ds-outline:hover{background:#07344d;border-color:var(--blue,#00a3ff)}}.ds-outline:active{transform:scale(.97)}.ds-outline:focus-visible{outline:2px solid var(--blue,#00a3ff);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-outline{transition:none;animation:none}}"
+    },
+    {
+      "name": "Signup Field",
+      "kind": "input",
+      "refersTo": "signup-input",
+      "description": "Visible label and blue keyboard focus.",
+      "html": "<label class=\"ds-label\" for=\"ds-email\">Email address</label><input class=\"ds-input\" id=\"ds-email\" type=\"email\" placeholder=\"Email address\" autocomplete=\"email\"/>",
+      "css": ".ds-label{display:block;margin-bottom:8px;color:#e1e1e1;font:500 15px var(--body,Rajdhani,Arial,sans-serif)}.ds-input{min-height:54px;background:#080808cc;color:#fff;border:1px solid #ffffff65;border-radius:12px;padding:14px 16px;font:500 18px var(--body,Rajdhani,Arial,sans-serif);caret-color:var(--blue,#00a3ff)}.ds-input::placeholder{color:#aaa;opacity:1}.ds-input:focus-visible{outline:2px solid var(--blue,#00a3ff);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-label{transition:none;animation:none}.ds-input{transition:none;animation:none}}"
+    },
+    {
+      "name": "Category Selector",
+      "kind": "chip",
+      "refersTo": "category-chip",
+      "description": "Suggestion category with explicit pressed state.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"true\">Apparel</button>",
+      "css": ".ds-chip{min-height:44px;background:#191919;border:1px solid #ffffff32;border-radius:999px;padding:9px 14px;font:500 14px var(--body,Rajdhani,Arial,sans-serif);color:#ccc;cursor:pointer}.ds-chip[aria-pressed=true]{background:#342316;border-color:var(--copper,#b87333);color:#fff}.ds-chip:hover{border-color:var(--copper,#b87333)}.ds-chip:focus-visible{outline:2px solid var(--blue,#00a3ff);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-chip{transition:none;animation:none}}"
+    },
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "description": "Condensed links retain established order and status.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Primary\"><span>SHOP<small>COMING SOON</small></span><span>ORIGIN<small>COMING SOON</small></span><a href=\"#apparel\">LAUNCH</a><a href=\"#music\">AUDIO</a><a href=\"#mission\">SYSTEM</a><a href=\"#join\">SOCIALS</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;align-items:center;gap:22px;background:#000;color:#fff;font:600 15px var(--body,Rajdhani,Arial,sans-serif);letter-spacing:.05em;padding:14px}.ds-nav a{color:inherit;text-decoration:none;padding:10px 0}.ds-nav small{display:block;font-size:9px;letter-spacing:.08em;color:#db9a60;margin-top:5px}.ds-nav a:hover{color:#db9a60}.ds-nav a:focus-visible{outline:2px solid var(--blue,#00a3ff);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-nav{transition:none;animation:none}}"
+    },
+    {
+      "name": "Charcoal Media Panel",
+      "kind": "card",
+      "refersTo": "media-panel",
+      "description": "Contained media stage; actual imagery remains an approved asset.",
+      "html": "<div class=\"ds-media\" role=\"img\" aria-label=\"Garment media stage\"><span>GARMENT MEDIA STAGE</span></div>",
+      "css": ".ds-media{aspect-ratio:1.09;max-width:320px;padding:24px 24px 44px;border-radius:14px;background:#151515;color:#b6b6b6;display:grid;place-items:center;font:500 14px var(--body,Rajdhani,Arial,sans-serif)}@media(prefers-reduced-motion:reduce){.ds-media{transition:none;animation:none}}"
+    },
+    {
+      "name": "Cover Play",
+      "kind": "button",
+      "refersTo": "cover-play",
+      "description": "Circular play control layered onto artwork.",
+      "html": "<button class=\"ds-play\" aria-label=\"Listen\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 3l15 9-15 9z\" fill=\"currentColor\"/></svg></button>",
+      "css": ".ds-play{display:grid;place-items:center;width:56px;height:56px;border:0;border-radius:50%;background:var(--copper,#b87333);color:#000;cursor:pointer;transition:background 160ms ease,transform 160ms cubic-bezier(.23,1,.32,1)}@media(hover:hover) and (pointer:fine){.ds-play:hover{background:#d99a60;transform:scale(1.06)}}.ds-play:focus-visible{outline:2px solid var(--blue,#00a3ff);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-play{transition:none;animation:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Augmented Athlete Campaign",
+    "overview": "CYZBORG uses a black photographic campaign world: athletes, garments, music covers, and training tools supply the material. Copper marks primary commitment; blue marks audio, focus, and selection. White condensed headings and muted supporting copy maintain hierarchy without replacing official identity artwork.\n\nThe interface is dark-only, spacious at section boundaries, and compact inside controls. Rounded controls and charcoal media panels provide practical touch surfaces; full-width photography and restrained image shading carry atmosphere. Existing official logos, helmet, Z, hero lettering, covers, and brand backgrounds remain authoritative.",
+    "keyCharacteristics": [
+      "Dark-only black and charcoal surfaces with photographic depth.",
+      "Copper primary actions; blue audio and focus states.",
+      "Official hero lettering; self-hosted Oswald and Rajdhani.",
+      "Rounded controls, contained garments, directional audio motion."
+    ],
+    "rules": [
+      {
+        "name": "The Accent Role Rule",
+        "body": "Copper carries primary actions and selected commitment; blue carries audio emphasis and keyboard focus. Platform colors remain local to social tiles.",
+        "section": "colors"
+      },
+      {
+        "name": "The Artwork Authority Rule",
+        "body": "Use official SVG lettering for the hero and official identity assets for logos. Conthrax is selective; supporting headings use Oswald.",
+        "section": "typography"
+      },
+      {
+        "name": "The Photographic Depth Rule",
+        "body": "Use charcoal surfaces, image shading, and subtle brand artwork for depth. Reserve structural shadows for attached menus and dialogs.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve official logos, helmet, Z, SVG slogan, apparel mockups, album covers, and approved background artwork.",
+      "Do contain garment mockups and enlarged front/back views; use cover cropping for campaign photography.",
+      "Do keep Share Your Input inside the attached mobile menu, preserve navigation order, and allow the menu to scroll within the viewport.",
+      "Do retain blue focus outlines, reduced-motion behavior, and meaningful touch targets.",
+      "Do use platform color only inside its matching social tile."
+    ],
+    "donts": [
+      "Don't replace approved hero lettering with live text or generated lettering.",
+      "Don't introduce a light mode, logo glow, fabricated product claims, or unapproved motivational copy.",
+      "Don't spread Conthrax across body copy or turn release status labels into decorative section kickers.",
+      "Don't enforce square artwork proportions around the 352px embedded audio player."
+    ]
+  }
+}
