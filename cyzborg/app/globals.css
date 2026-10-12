@@ -256,3 +256,17 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 /* Category panels: three equal columns from 640px; stacked on phones */
 @media(min-width:640px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.mission-panel{grid-column:auto}}
 @media(min-width:640px) and (max-width:1023px){.category{height:300px}.category>div{inset:auto 20px 24px}.category h2{font-size:28px}.category p{font-size:13px}}
+
+/* Apparel panel: lift the athlete out of the shadows */
+.apparel-media{filter:brightness(1.35) contrast(1.06)}
+.apparel-panel:after{background:linear-gradient(0deg,#000d 0%,#0009 28%,transparent 58%)}
+
+/* Streaming links: icon + brand-colored name, underline drawn on hover */
+.platforms{column-gap:26px}
+.platforms a.platform-link{position:relative;min-height:44px;padding:0;border:0;border-radius:0;background:none}
+.platforms a.platform-link:after{content:"";position:absolute;left:0;right:0;bottom:6px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 220ms cubic-bezier(.16,1,.3,1)}
+@media(hover:hover) and (pointer:fine){.platforms a.platform-link:hover{background:none;border:0}.platforms a.platform-link:hover:after{transform:scaleX(1)}}
+.platforms a.platform-link:focus-visible:after{transform:scaleX(1)}
+@media(prefers-reduced-motion:reduce){.platforms a.platform-link:after{transition:none}}
+/* Keep the athlete (print ≈70% across the photo) in frame at any panel width */
+.apparel-media{--mw:max(100cqw,200cqh);left:clamp(calc(100cqw - var(--mw)),calc(66cqw - .7 * var(--mw)),0px);transform:translate(0,-25%)}

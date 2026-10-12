@@ -259,7 +259,7 @@ From 1024px, Audio releases other than PSYCHOTIC Dancing use full-height flex co
 - **Hero:** fills the first screen (100svh, cover at 68% 20%) on desktop and landscape tablets. On portrait tablets the photo takes the top of the screen (100svh − 275px, cropped to keep the bar and cable) and the copy sits beneath it.
 - **Section rhythm:** from 768px to 1366px, sections use 64px padding, with tighter joins at Drop→Audio and System→Network.
 - **System art:** larger on tablets; it is stacked full-bleed beneath the copy in portrait.
-- **Audio:** release descriptions are 18–21px with a 58ch measure; titles run 36–54px. Streaming links are brand pills (Spotify #1ED760, Apple Music #FA243C, YouTube Music #FF3B3B) with Simple Icons glyphs, a 9% brand tint, and a 38% brand border. A release with no links shows no "Now streaming" label.
+- **Audio:** release descriptions are 18–21px with a 58ch measure; titles run 36–54px. Streaming links are a brand-colored Simple Icons glyph plus a brand-colored name (Spotify #1ED760, Apple Music #FA243C, YouTube Music #FF3B3B), with no container; a 2px underline in the brand color draws in from the left on hover and focus (220ms). A release with no links shows no "Now streaming" label.
 - **Album selector:** from 1024px it shows five covers in a 1200px selector; on portrait tablets it shows three covers at full width.
 - **Fan favorite:** a centered 1120px feature on desktop and landscape. In portrait it is stacked and centered, with 420px art and a soft drop shadow.
 - **Category panels:** three equal columns from 640px; stacked below that.
