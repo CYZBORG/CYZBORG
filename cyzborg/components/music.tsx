@@ -1,13 +1,21 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ChevronLeft, ChevronRight, Play, AudioLines } from "lucide-react";
 import { useAudioDock } from "@/components/audio-dock";
+import { siSpotify, siApplemusic, siYoutubemusic } from "simple-icons";
 import catalog from "@/app/music-data.json";
 
 type Audio = {id:string; spotifyUrl:string; youtubeUrl:string; appleUrl:string; embedUrl:string; description:string[]};
 type Release = Audio & {titleText:string;coverUrl:string;label?:string};
+const PLATFORMS=[
+  {key:"spotifyUrl",name:"Spotify",icon:siSpotify,color:"#1ED760"},
+  {key:"appleUrl",name:"Apple Music",icon:siApplemusic,color:"#FA243C"},
+  {key:"youtubeUrl",name:"YouTube Music",icon:siYoutubemusic,color:"#FF3B3B"},
+] as const;
 function Platforms({audio,onPlay}:{audio:Audio;onPlay?:()=>void}) {
-  return <div className="streaming-links"><p>Now streaming on major platforms:</p><div className="platforms">{[["Spotify",audio.spotifyUrl],["Apple Music",audio.appleUrl],["YouTube Music",audio.youtubeUrl]].filter(([,url])=>url&&url!=="#").map(([name,url])=><a key={name} href={url} target="_blank" rel="noreferrer">{name}</a>)}{onPlay&&<button className="button outline inline-listen" onClick={onPlay}><Play size={14} fill="currentColor"/> Play</button>}</div></div>;
+  const links=PLATFORMS.filter(p=>audio[p.key]&&audio[p.key]!=="#");
+  if(!links.length&&!onPlay)return null;
+  return <div className="streaming-links">{links.length>0&&<p>Now streaming on major platforms:</p>}<div className="platforms">{links.map(p=><a key={p.name} className="platform-link" href={audio[p.key]} target="_blank" rel="noreferrer" style={{"--platform":p.color} as CSSProperties} aria-label={`Listen on ${p.name} (opens in a new tab)`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={p.icon.path}/></svg>{p.name}</a>)}{onPlay&&<button className="button outline inline-listen" onClick={onPlay}><Play size={14} fill="currentColor"/> Play</button>}</div></div>;
 }
 function ReleaseFeature({album,fan=false,active=true}:{album:Release;fan?:boolean;active?:boolean}) {
   const [track,setTrack]=useState<number|null>(null);
@@ -30,7 +38,7 @@ export default function Music(){
   const [index,setIndex]=useState(0);
   const [wide,setWide]=useState(false);
   useEffect(()=>{
-    const media=window.matchMedia("(min-width: 1800px)");
+    const media=window.matchMedia("(min-width: 1024px)");
     const update=()=>setWide(media.matches);
     update();media.addEventListener("change",update);
     return ()=>media.removeEventListener("change",update);

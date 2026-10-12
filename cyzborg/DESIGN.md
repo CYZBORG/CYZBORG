@@ -252,3 +252,14 @@ From 1024px, Audio releases other than PSYCHOTIC Dancing use full-height flex co
 **Audio dock.** Every Play control sends one Spotify embed (80px compact) to a fixed charcoal dock centered at the bottom (max 760px, 16px radius, attached-menu shadow). Music keeps playing while the visitor browses. The playing release's cover control turns blue with an audio-lines icon. The dock enters in 450ms and exits in 200ms. Spotify still loads only after Play is pressed. Below 600px the title block is hidden and the embed fills the dock.
 
 **Reduced motion:** no boot, parallax, reveals, or dock slide. Pillars still switch on as they are reached.
+
+## October 12 tablet refinements
+
+- **Header:** whenever the menu button shows (below 1600px), Share Your Input lives only inside the menu.
+- **Hero:** fills the first screen (100svh, cover at 68% 20%) on desktop and landscape tablets. On portrait tablets the photo takes the top of the screen (100svh − 275px, cropped to keep the bar and cable) and the copy sits beneath it.
+- **Section rhythm:** from 768px to 1366px, sections use 64px padding, with tighter joins at Drop→Audio and System→Network.
+- **System art:** larger on tablets; it is stacked full-bleed beneath the copy in portrait.
+- **Audio:** release descriptions are 18–21px with a 58ch measure; titles run 36–54px. Streaming links are brand pills (Spotify #1ED760, Apple Music #FA243C, YouTube Music #FF3B3B) with Simple Icons glyphs, a 9% brand tint, and a 38% brand border. A release with no links shows no "Now streaming" label.
+- **Album selector:** from 1024px it shows five covers in a 1200px selector; on portrait tablets it shows three covers at full width.
+- **Fan favorite:** a centered 1120px feature on desktop and landscape. In portrait it is stacked and centered, with 420px art and a soft drop shadow.
+- **Category panels:** three equal columns from 640px; stacked below that.
