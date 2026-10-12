@@ -63,7 +63,7 @@ function heroDepth(){
 // Lists arrive as lists; each surface gets its own material, not one shared fade.
 function choreography(){
   gsap.from(".category",{clipPath:"inset(100% 0 0 0)",duration:0.9,ease:EXPO,stagger:0.1,
-    scrollTrigger:{trigger:".category-grid",start:"top 85%",once:true}});
+    scrollTrigger:{trigger:".category-grid",start:"top 98%",once:true}});
 
   ScrollTrigger.batch(".product",{start:"top 92%",once:true,
     onEnter:els=>gsap.fromTo(els,{y:32,opacity:0},{y:0,opacity:1,duration:0.7,ease:EXPO,stagger:{each:0.06,amount:0.3},overwrite:true})});

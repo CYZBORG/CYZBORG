@@ -153,3 +153,10 @@ html.dock-open body{padding-bottom:112px}
 ::selection{background:#b8733366;color:#fff}
 html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 @media(max-width:479px){.mission-panel{grid-column:auto}}
+/* Phone hero: frame the full cable curl (bar, hands, cable) above the copy instead of under it */
+@media(max-width:767px){
+.hero{--hero-photo-h:clamp(470px,138vw,640px);align-items:flex-start;min-height:0;background:#000}
+.hero-photo{inset:0 0 auto 0;height:var(--hero-photo-h);object-fit:cover;object-position:56% 0;-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
+.hero-shade{background:linear-gradient(180deg,#0009 0,transparent 90px)}
+.hero-inner{padding:calc(var(--hero-photo-h) - 64px) 0 44px}
+}
