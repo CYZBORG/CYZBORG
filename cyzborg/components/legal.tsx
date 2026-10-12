@@ -5,13 +5,13 @@ const CONTACT = "contact@cyzborg.com";
 
 function Mail({subject}:{subject?:string}){return <a href={`mailto:${CONTACT}${subject?`?subject=${encodeURIComponent(subject)}`:""}`}>{CONTACT}</a>;}
 
-function LegalPage({title,children}:{title:string;children:ReactNode}){
+function LegalPage({title,children,eyebrow="LEGAL",hideUpdated=false}:{title:string;children:ReactNode;eyebrow?:string;hideUpdated?:boolean}){
   return <main className="legal-page">
     <header className="legal-header"><div className="shell"><a className="brand" href="/" aria-label="CYZBORG home"><img className="helmet" src="/helmet.svg" alt=""/><img className="wordmark" src="/wordmark-tight.svg" alt="CYZBORG"/></a></div></header>
     <article className="shell legal-body">
-      <p className="eyebrow">LEGAL</p>
+      <p className="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
-      <p className="legal-updated">Last updated {UPDATED}</p>
+      {!hideUpdated&&<p className="legal-updated">Last updated {UPDATED}</p>}
       {children}
     </article>
     <footer className="legal-footer"><div className="shell"><nav aria-label="Legal"><a href="/">Home</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Use</a></nav><p>© 2026 CYZBORG LLC · New Mexico, USA</p></div></footer>
@@ -104,5 +104,12 @@ export function Terms(){
 
     <h2>Contact</h2>
     <p>CYZBORG LLC, New Mexico, USA · <Mail/></p>
+  </LegalPage>;
+}
+
+export function Confirmed(){
+  return <LegalPage title="You’re in." eyebrow="FIRST ACCESS CONFIRMED" hideUpdated>
+    <p>Your email is confirmed. You’ll be the first to know when the CYZBORG drop goes live, plus new music and what’s next from the system.</p>
+    <p className="confirmed-actions"><a className="button primary" href="/#music">LISTEN NOW</a><a className="button outline" href="/#apparel">SEE THE DROP</a></p>
   </LegalPage>;
 }

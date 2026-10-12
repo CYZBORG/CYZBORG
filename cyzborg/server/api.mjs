@@ -8,7 +8,17 @@ const same=(a,b)=>timingSafeEqual(Buffer.from(hash(a)),Buffer.from(hash(b)));
 const cookie=(req,name)=>req.headers.get('cookie')?.split(';').map(s=>s.trim()).find(s=>s.startsWith(name+'='))?.slice(name.length+1)||'';
 const json=(data,status=200,headers={})=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store',...headers}});
 class HttpError extends Error{constructor(status,message){super(message);this.status=status;}}
-export function makeApi({store,env,now=()=>Date.now()}){
+// Kit (email service): new signups are created as unconfirmed and added to the First Access form,
+// which sends Kit's double opt-in confirmation email.
+const KIT_FORM_ID='10037265';
+async function addToKit(email,env,fetcher){
+ const headers={'Content-Type':'application/json','X-Kit-Api-Key':env.KIT_API_KEY};
+ const created=await fetcher('https://api.kit.com/v4/subscribers',{method:'POST',headers,body:JSON.stringify({email_address:email,state:'inactive'})});
+ if(!created.ok)throw new Error(`Kit subscriber ${created.status}`);
+ const added=await fetcher(`https://api.kit.com/v4/forms/${env.KIT_FORM_ID||KIT_FORM_ID}/subscribers`,{method:'POST',headers,body:JSON.stringify({email_address:email,referrer:'https://www.cyzborg.com/'})});
+ if(!added.ok)throw new Error(`Kit form ${added.status}`);
+}
+export function makeApi({store,env,now=()=>Date.now(),fetcher=globalThis.fetch}){
  const secret=()=>{if(!env.CYZBORG_SESSION_SECRET||env.CYZBORG_SESSION_SECRET.length<32||!env.CYZBORG_ADMIN_PASSWORD||env.CYZBORG_ADMIN_PASSWORD.length<16)throw new HttpError(503,'Owner login is not configured. Set the two Netlify environment variables.');return env.CYZBORG_SESSION_SECRET;};
  const sign=text=>createHmac('sha256',secret()).update(text).digest('base64url');
  const owner=req=>{try{const token=cookie(req,'cyzborg_owner'),[text,mac]=token.split('.');if(!text||!mac||!same(sign(text),mac))return false;const value=JSON.parse(Buffer.from(text,'base64url').toString());return value.exp>now()&&value.pw===hash(env.CYZBORG_ADMIN_PASSWORD);}catch{return false;}};
@@ -63,7 +73,8 @@ export function makeApi({store,env,now=()=>Date.now()}){
    method(req,['POST']);const b=await body(req),email=typeof b.email==='string'?b.email.trim().toLowerCase():'';
    if(!emailOK(email)||b.website)throw new HttpError(400,'Enter a valid email address.');
    const key=`subscribers/${hash(email)}`;
-   if(!await store.get(key,{type:'json'})){await limit(`subscribe/${ip}`,10,60*60*1000);await store.setJSON(key,{email,created_at:now(),consent:'CYZBORG apparel and music updates — v1'},{onlyIfNew:true});}
+   if(!await store.get(key,{type:'json'})){await limit(`subscribe/${ip}`,10,60*60*1000);const {modified}=await store.setJSON(key,{email,created_at:now(),consent:'CYZBORG emails about drops, music, and content; 13+ — v2'},{onlyIfNew:true});
+    if(modified&&env.KIT_API_KEY&&env.KIT_ENABLED){try{await addToKit(email,env,fetcher);}catch(e){console.error('CYZBORG Kit sync failed:',e.message);}}}
    return json({ok:true});
   }
   if(path==='/api/admin/community'){

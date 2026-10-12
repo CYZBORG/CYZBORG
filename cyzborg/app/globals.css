@@ -112,3 +112,7 @@
 .legal-footer .shell{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .legal-footer nav{display:flex;gap:20px}
 .legal-footer a:hover{color:var(--ink)}
+.legal-body .confirmed-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.legal-body .confirmed-actions a{text-decoration:none}
+.legal-body .confirmed-actions .button.primary{color:#000}
+.legal-body .confirmed-actions .button.outline{color:var(--ink)}
