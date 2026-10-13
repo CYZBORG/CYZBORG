@@ -263,3 +263,5 @@ From 1024px, Audio releases other than PSYCHOTIC Dancing use full-height flex co
 - **Album selector:** from 1024px it shows five covers in a 1200px selector; on portrait tablets it shows three covers at full width.
 - **Fan favorite:** a centered 1120px feature on desktop and landscape. In portrait it is stacked and centered, with 420px art and a soft drop shadow.
 - **Category panels:** three equal columns from 640px; stacked below that.
+- **Hero copy clearance:** on desktop the photo is anchored at 30% 20% and the copy capped at 50% width, so the slogan never meets the shirt print. On landscape tablets and laptops (768–1366px) the photo sits at 12% 20%, the copy at 48% width, and the copy is bottom-aligned with 16svh of clearance, which places it below the print and above the bar.
+- **System intro (portrait tablets):** 56–68px heading; "The Augmented Athlete" gets a 56px blue rule above it; the first paragraph is a 24px white lead and the rest is 20px/1.65 body text with a 34em measure.

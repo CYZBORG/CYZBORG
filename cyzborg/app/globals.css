@@ -273,3 +273,27 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 /* Brand color on the icon only; names stay white */
 .platforms a.platform-link{color:#fff}
 .platforms a.platform-link svg{fill:var(--platform)}
+
+/* Hero copy clear of the shirt print: athlete framed further right, slogan narrower */
+@media(min-width:1024px),(min-width:768px) and (orientation:landscape){
+.hero-photo{object-position:30% 20%}
+.hero-copy{width:min(50%,780px)}
+}
+/* Landscape tablets and laptops: copy sits in the lower half, under the print */
+@media(min-width:768px) and (max-width:1366px) and (orientation:landscape){
+.hero{align-items:flex-end}
+.hero-inner{padding-block:var(--header-height) max(48px,8svh)}
+}
+
+/* Portrait tablets: System copy reads as a proper editorial intro above the art */
+@media(min-width:768px) and (max-width:1023px){
+.mission-intro h2{font-size:clamp(56px,8vw,68px);line-height:1.02}
+.mission-origin{position:relative;font-size:22px;letter-spacing:.08em;margin-top:40px;padding-top:20px;color:#fff}
+.mission-origin:before{content:"";position:absolute;top:0;left:0;width:56px;height:2px;background:var(--blue)}
+.mission-story{max-width:34em;margin-top:18px;font-size:20px;line-height:1.65;color:#d4d4d4}
+.mission-story p:first-child{font-size:24px;line-height:1.45;color:#fff}
+.mission-story p+p{margin-top:18px}
+.mission-original-art{margin-top:16px}
+}
+@media(min-width:768px) and (max-width:1366px) and (orientation:landscape){.hero-photo{object-position:12% 20%}.hero-copy{width:min(48%,780px)}}
+@media(min-width:768px) and (max-width:1366px) and (orientation:landscape){.hero-inner{padding-block:var(--header-height) max(96px,16svh)}}
