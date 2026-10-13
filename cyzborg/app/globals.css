@@ -562,3 +562,6 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 @media(max-width:767px){.mission-original-art{top:66%}}
 @media(min-width:768px) and (max-width:1023px){.mission-original-art{top:73%}}
 @media(max-width:767px){.mission-original-art{top:67%}}@media(min-width:768px) and (max-width:1023px){.mission-original-art{top:78%}}
+/* Hoodie placeholders match the shirt image cards at every size */
+.hoodie-coming{aspect-ratio:1.2}
+@media(max-width:767px){.hoodie-coming{aspect-ratio:1.32}}
