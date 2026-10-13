@@ -285,3 +285,4 @@ From 1024px, Audio releases other than PSYCHOTIC Dancing use full-height flex co
 - **Shirts (phones):** 1.32:1 image cards with 12px vertical padding; "View larger" is a small translucent pill over the image corner.
 - **Shirts (768px and up):** 1.2:1 image cards with 14px/20px padding and the same overlay "View larger" pill as on phones.
 - **Shirt vote:** sits directly under the color; the divider line comes after it and closes each product.
+- **System backdrop:** enlarged (270% width on phones, 170% on tablets) at 24% opacity, centered on the story paragraphs.
