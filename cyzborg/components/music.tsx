@@ -72,9 +72,11 @@ function ReleasePanel({release,meta,id,labelledBy,active=true}:{release:Release;
   </article>;
 }
 
-// Phones & tablets: the discography as a list; tapping a release opens its details in place.
+// Phones & tablets: the latest release is featured open; earlier releases live in one expandable group.
 function ReleaseList(){
-  const [open,setOpen]=useState(0);
+  const [latest,...older]=releases;
+  const [showOlder,setShowOlder]=useState(false);
+  const [open,setOpen]=useState(-1);
   const items=useRef<(HTMLLIElement|null)[]>([]);
   const anchor=useRef<{i:number;top:number}|null>(null);
   function toggle(i:number){
@@ -89,19 +91,32 @@ function ReleaseList(){
     const shift=el.getBoundingClientRect().top-a.top;
     if(Math.abs(shift)>1)window.scrollBy({top:shift,behavior:"instant" as ScrollBehavior});
   },[open]);
-  return <ol className="rl" aria-label="CYZBORG releases">
-    {releases.map((r,i)=>{const isOpen=open===i;return <li key={r.id} ref={el=>{items.current[i]=el;}} className={`rl-item ${isOpen?"is-open":""}`}>
-      <button className="rl-row" aria-expanded={isOpen} aria-controls={`rl-body-${r.id}`} onClick={()=>toggle(i)}>
-        <img className="rl-cover" src={r.coverUrl} alt="" loading="lazy"/>
-        <span className="rl-text"><span className="rl-name">{r.titleText}</span><span className="rl-type">{i===0&&<span className="rl-new">NEW</span>}{typeOf(r)}</span></span>
+  return <div className="rl-wrap">
+    <div className="rl-item rl-featured is-open">
+      <div className="rl-row">
+        <img className="rl-cover" src={latest.coverUrl} alt="" loading="lazy"/>
+        <span className="rl-text"><span className="rl-name">{latest.titleText}</span><span className="rl-type"><span className="rl-new">NEW</span>{typeOf(latest)}</span></span>
+      </div>
+      <div className="rl-body"><Description release={latest}/><Tracklist release={latest}/></div>
+    </div>
+    <div className={`rl-archive ${showOlder?"is-open":""}`}>
+      <button className="rl-archive-toggle" aria-expanded={showOlder} aria-controls="rl-older" onClick={()=>{setShowOlder(v=>!v);setOpen(-1);}}>
+        <span className="rl-stack" aria-hidden="true">{older.slice(0,4).map(r=><img key={r.id} src={r.coverUrl} alt="" loading="lazy"/>)}</span>
+        <span className="rl-text"><span className="rl-name">Earlier releases</span><span className="rl-type">{older.length} releases</span></span>
         <ChevronDown className="rl-chev" size={22} aria-hidden="true"/>
       </button>
-      {isOpen&&<div className="rl-body" id={`rl-body-${r.id}`}>
-        <Description release={r}/>
-        <Tracklist release={r}/>
-      </div>}
-    </li>;})}
-  </ol>;
+      {showOlder&&<ol className="rl" id="rl-older" aria-label="Earlier CYZBORG releases">
+        {older.map((r,i)=>{const isOpen=open===i;return <li key={r.id} ref={el=>{items.current[i]=el;}} className={`rl-item ${isOpen?"is-open":""}`}>
+          <button className="rl-row" aria-expanded={isOpen} aria-controls={`rl-body-${r.id}`} onClick={()=>toggle(i)}>
+            <img className="rl-cover" src={r.coverUrl} alt="" loading="lazy"/>
+            <span className="rl-text"><span className="rl-name">{r.titleText}</span><span className="rl-type">{typeOf(r)}</span></span>
+            <ChevronDown className="rl-chev" size={22} aria-hidden="true"/>
+          </button>
+          {isOpen&&<div className="rl-body" id={`rl-body-${r.id}`}><Description release={r}/><Tracklist release={r}/></div>}
+        </li>;})}
+      </ol>}
+    </div>
+  </div>;
 }
 
 export default function Music(){
