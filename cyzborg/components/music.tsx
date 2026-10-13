@@ -110,6 +110,14 @@ export default function Music(){
   }
   function page(dir:1|-1){const el=rail.current;if(!el)return;el.scrollBy({left:dir*el.clientWidth*.8,behavior:reducedMotion()?"auto":"smooth"});}
   // Phones/tablets: the releases are a swipeable row of cards; the one snapped into place is the selection.
+  // Phones/tablets: the card row is as tall as the card in view, easing between heights.
+  useEffect(()=>{
+    const el=stack.current;if(!el)return;
+    if(!carousel){el.style.height="";return;}
+    const card=el.children[index] as HTMLElement|undefined;if(!card)return;
+    const fit=()=>{el.style.height=`${card.offsetHeight}px`;};fit();
+    const ro=new ResizeObserver(fit);ro.observe(card);return()=>ro.disconnect();
+  },[carousel,index]);
   function onStackScroll(){
     if(!carousel)return;const el=stack.current;if(!el||el.children.length<2)return;
     const step=(el.children[1] as HTMLElement).offsetLeft-(el.children[0] as HTMLElement).offsetLeft;
