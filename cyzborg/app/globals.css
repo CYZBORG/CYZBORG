@@ -499,3 +499,9 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .is-carousel .rp-stack{align-items:stretch}
 .is-carousel .rp-stack>.rp{align-self:stretch;align-content:start}
 @media(min-width:768px) and (max-width:1023px){.is-carousel .rp{align-items:start}}
+/* Desktop: cover + copy as one centered block */
+@media(min-width:1024px){
+.rp-stage:not(.is-carousel) .rp-stack>.rp{grid-template-columns:minmax(0,400px) minmax(0,680px);justify-content:center;column-gap:64px;width:100%}
+.rp-stage:not(.is-carousel) .rp-desc{max-width:none}
+.rp-stage:not(.is-carousel) .rp-tracks{max-width:none}
+}
