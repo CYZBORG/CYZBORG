@@ -586,3 +586,18 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .rl-stack{padding-left:18px}
 .rl-archive .rl-name{font-size:22px}
 }
+
+/* Phones & tablets: half the vertical spacing between sections */
+@media(max-width:767px){
+#apparel{padding-block:20px 28px}
+#music,#mission,#join{padding-block:26px}
+#fan-favorite,#first-access{padding-block:20px}
+}
+@media(min-width:768px) and (max-width:1023px),(pointer:coarse) and (min-width:768px) and (max-width:1366px){
+#apparel{padding-block:24px 20px}
+#music{padding-block:28px 32px}
+#fan-favorite{padding-block:32px}
+#mission{padding-block:32px 20px}
+#join{padding-block:24px 32px}
+#first-access{padding-block:24px}
+}
