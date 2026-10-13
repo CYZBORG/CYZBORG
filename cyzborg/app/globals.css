@@ -554,3 +554,5 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .product-image{aspect-ratio:1.2;padding:14px 20px}
 .view-label{bottom:12px;right:14px;padding:5px 10px;border-radius:999px;background:#000a}
 }
+/* Vote sits directly under the color; the divider closes the product below it */
+.product-info .shirt-vote{border-top:0;margin-top:12px;padding-top:0;padding-bottom:14px;border-bottom:1px solid var(--line)}
