@@ -442,3 +442,60 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 @media(max-width:1023px),(pointer:coarse) and (max-width:1366px){.header-inner>.header-wordmark{display:none}}
 @media(max-width:1023px){.mission-original-art>img{width:121%;left:-10.5%;top:-3%}}
 @media(max-width:1023px){.mission-original-art{aspect-ratio:1.5}.mission-original-art>img{width:116%;left:-8%;top:-2%}}
+
+/* ============ Audio round 3 (Oct 12) ============ */
+/* Desktop: each release's copy sits centered beside its cover, and the panel centers in the stable stage */
+.rp-stack>.rp{align-items:center;align-self:center}
+.rp-head .rp-title{margin-top:10px}
+
+/* Phones & tablets: swipeable release cards */
+.rp-stage.is-carousel{--bleed:20px;padding-top:24px;margin-top:20px}
+@media(min-width:768px){.rp-stage.is-carousel{--bleed:32px}}
+.is-carousel .rp-stack{display:flex;align-items:flex-start;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--bleed) * -1);padding-inline:var(--bleed);scroll-padding-inline:var(--bleed)}
+.is-carousel .rp-stack::-webkit-scrollbar{display:none}
+.is-carousel .rp-stack>.rp{flex:0 0 calc(100% - 28px);visibility:visible;animation:none;scroll-snap-align:start;align-self:flex-start;background:#0e0e0e;border:1px solid #ffffff1f;border-radius:16px;padding:20px;opacity:.4;transition:opacity 300ms ease}
+.is-carousel .rp-stack>.rp.is-current{opacity:1}
+@media(min-width:768px){.is-carousel .rp-stack>.rp{flex-basis:calc(100% - 72px);padding:28px}}
+
+/* Phone card: cover and title side by side, aligned; no stretched gaps */
+@media(max-width:767px){
+.rp,.fan-favorite .rp{grid-template-columns:104px minmax(0,1fr);grid-template-rows:auto;align-content:start;align-items:center;column-gap:16px}
+.rp-art{grid-row:1;grid-column:1;align-self:center}
+.rp-head{grid-column:2;grid-row:1;align-self:center}
+.rp-meta,.rp-title{grid-column:auto;align-self:auto}
+.rp-title{font-size:23px;line-height:1.08}
+.rp-desc{grid-column:1/-1;margin-top:18px;font-size:16px;line-height:1.65}
+.rp-tracks{grid-column:1/-1;margin-top:18px}
+.rp-track:last-child{border-bottom:0}
+.rp-cover-play{width:40px;height:40px;right:6px;bottom:6px}
+}
+/* Tablet card: cover + copy in two columns */
+@media(min-width:768px) and (max-width:1023px){
+.is-carousel .rp{grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:28px;align-items:start}
+}
+.rp-track-no{align-self:center}
+
+/* Dots + swipe hint */
+.rp-swipe{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:18px}
+.rp-dots{display:flex;align-items:center;gap:2px}
+.rp-dots button{display:grid;place-items:center;width:28px;height:32px;padding:0;border:0;background:none}
+.rp-dots span{display:block;width:7px;height:7px;border-radius:999px;background:#ffffff40;transition:width 260ms cubic-bezier(.16,1,.3,1),background 200ms ease}
+.rp-dots .is-on span{width:22px;background:var(--copper)}
+.rp-dots button:focus-visible{outline:2px solid var(--blue);outline-offset:-2px;border-radius:8px}
+.rp-swipe-hint{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9a9a9a;transition:opacity 400ms ease}
+.rp-swipe-hint svg{color:var(--copper);animation:swipe-nudge 1.6s ease-in-out infinite}
+.rp-swipe-hint svg:first-child{animation-direction:reverse}
+.rp-swipe-hint.is-done{opacity:0}
+@keyframes swipe-nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+@media(prefers-reduced-motion:reduce){.rp-swipe-hint svg{animation:none}.is-carousel .rp-stack>.rp{transition:none}}
+
+/* System (phones & tablets): the architecture art becomes a faint backdrop behind the copy */
+@media(max-width:1023px){
+.mission-intro{position:relative;isolation:isolate}
+.mission-original-art{position:absolute;z-index:-1;top:50%;left:50%;width:min(190%,1300px);max-width:none;aspect-ratio:auto;margin:0;overflow:visible;transform:translate(-50%,-50%);opacity:.2;pointer-events:none;-webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent);mask-image:radial-gradient(closest-side,#000 55%,transparent)}
+.mission-original-art>img{position:static;width:100%;left:auto;top:auto}
+}
+/* Equal-height cards; content starts at the top of each */
+.is-carousel .rp-stack{align-items:stretch}
+.is-carousel .rp-stack>.rp{align-self:stretch;align-content:start}
+@media(min-width:768px) and (max-width:1023px){.is-carousel .rp{align-items:start}}

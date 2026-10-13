@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type TouchEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { ChevronLeft, ChevronRight, Play, AudioLines } from "lucide-react";
 import { siSpotify, siApplemusic, siYoutubemusic } from "simple-icons";
 import { useAudioDock } from "@/components/audio-dock";
@@ -35,7 +35,7 @@ function PlatformIcons({links,label}:{links:Links;label:string}){
   return <div className="rp-platforms">{list.map(p=><a key={p.name} href={links[p.key]} target="_blank" rel="noreferrer" style={{"--platform":p.color} as CSSProperties} aria-label={`${label} on ${p.name} (opens in a new tab)`} title={p.name}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={p.icon.path}/></svg></a>)}</div>;
 }
 
-function ReleasePanel({release,meta,id,labelledBy,active=true}:{release:Release;meta:string;id?:string;labelledBy?:string;active?:boolean}){
+function ReleasePanel({release,meta,id,labelledBy,active=true,current=true}:{release:Release;meta:string;id?:string;labelledBy?:string;active?:boolean;current?:boolean}){
   const dock=useAudioDock();
   const tracks=tracksOf(release);
   const firstPlayable=tracks.find(t=>t.embedUrl);
@@ -43,14 +43,13 @@ function ReleasePanel({release,meta,id,labelledBy,active=true}:{release:Release;
   const releasePlaying=tracks.some(t=>dock.current?.id===t.id);
   const [lead,...rest]=release.description;
   const leadIsTagline=release.description.length>1&&lead===lead.toUpperCase();
-  return <article className={`rp ${active?"is-active":""}`} id={id} role={id?"tabpanel":undefined} aria-labelledby={labelledBy} aria-hidden={!active||undefined} inert={!active||undefined}>
+  return <article className={`rp ${active?"is-active":""} ${current?"is-current":""}`} id={id} role={id?"tabpanel":undefined} aria-labelledby={labelledBy} aria-hidden={!active||undefined} inert={!active||undefined}>
     <div className="rp-art">
       <img src={release.coverUrl} alt={`${release.titleText} cover art`} loading="lazy"/>
       {firstPlayable&&<button className={`rp-cover-play ${releasePlaying?"is-playing":""}`} onClick={()=>play(firstPlayable)} aria-label={releasePlaying?`${release.titleText} is in the audio player`:`Play ${release.titleText}`}>{releasePlaying?<AudioLines size={22}/>:<Play size={22} fill="currentColor"/>}</button>}
     </div>
     <div className="rp-info">
-      <p className="rp-meta">{meta}</p>
-      <h3 className="rp-title">{release.titleText}</h3>
+      <div className="rp-head"><p className="rp-meta">{meta}</p><h3 className="rp-title">{release.titleText}</h3></div>
       <div className="rp-desc">
         {leadIsTagline?<><p className="rp-tagline">{lead}</p>{rest.map((p,i)=><p key={i}>{p}</p>)}</>:release.description.map((p,i)=><p key={i}>{p}</p>)}
       </div>
@@ -70,7 +69,10 @@ export default function Music(){
   const [index,setIndex]=useState(0);
   const rail=useRef<HTMLDivElement>(null);
   const stage=useRef<HTMLDivElement>(null);
-  const touch=useRef<{x:number;y:number}|null>(null);
+  const stack=useRef<HTMLDivElement>(null);
+  const [carousel,setCarousel]=useState(false);
+  const [swiped,setSwiped]=useState(false);
+  useEffect(()=>{const m=window.matchMedia("(max-width: 1023px), (pointer: coarse) and (max-width: 1366px)");const u=()=>setCarousel(m.matches);u();m.addEventListener("change",u);return()=>m.removeEventListener("change",u);},[]);
   const [edges,setEdges]=useState({start:true,end:false});
   const count=releases.length;
 
@@ -87,6 +89,7 @@ export default function Music(){
   function select(i:number,{focus=false,bringIntoView=false}={}){
     const next=(i+count)%count;
     setIndex(next);revealCard(next);
+    if(carousel){const el=stack.current,card=el?.children[next] as HTMLElement|undefined;if(el&&card)el.scrollTo({left:card.offsetLeft-el.offsetLeft-parseFloat(getComputedStyle(el).paddingLeft),behavior:reducedMotion()?"auto":"smooth"});}
     if(focus)rail.current?.querySelectorAll<HTMLButtonElement>(".disco-card")[next]?.focus({preventScroll:true});
     // After paging from below, or tapping a cover on a phone, bring the release's top into view.
     requestAnimationFrame(()=>{
@@ -106,12 +109,12 @@ export default function Music(){
     if(next!==-1){e.preventDefault();select(next,{focus:true});}
   }
   function page(dir:1|-1){const el=rail.current;if(!el)return;el.scrollBy({left:dir*el.clientWidth*.8,behavior:reducedMotion()?"auto":"smooth"});}
-  // Swipe the release details left/right on touch screens.
-  function onTouchStart(e:TouchEvent){const t=e.touches[0];touch.current={x:t.clientX,y:t.clientY};}
-  function onTouchEnd(e:TouchEvent){
-    const s=touch.current;touch.current=null;if(!s)return;
-    const t=e.changedTouches[0],dx=t.clientX-s.x,dy=t.clientY-s.y;
-    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.6)select(index+(dx<0?1:-1));
+  // Phones/tablets: the releases are a swipeable row of cards; the one snapped into place is the selection.
+  function onStackScroll(){
+    if(!carousel)return;const el=stack.current;if(!el||el.children.length<2)return;
+    const step=(el.children[1] as HTMLElement).offsetLeft-(el.children[0] as HTMLElement).offsetLeft;
+    const i=Math.max(0,Math.min(count-1,Math.round(el.scrollLeft/step)));
+    if(i!==index){setIndex(i);revealCard(i);setSwiped(true);}
   }
   const prev=releases[(index-1+count)%count],next=releases[(index+1)%count];
 
@@ -134,16 +137,20 @@ export default function Music(){
           </div>
           <button className="disco-arrow next" onClick={()=>page(1)} aria-label="Scroll releases right" tabIndex={-1} hidden={edges.end}><ChevronRight/></button>
         </div>
-        <div className="rp-stage" ref={stage} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+        <div className={`rp-stage ${carousel?"is-carousel":""}`} ref={stage}>
           {/* All releases share one grid cell, so the section is always as tall as the longest one and never jumps. */}
-          <div className="rp-stack">
-            {releases.map((r,i)=><ReleasePanel key={r.id} release={r} meta={r.label||typeOf(r)} active={i===index} id={i===index?"release-panel":undefined} labelledBy={i===index?`disco-${r.id}`:undefined}/>)}
+          <div className="rp-stack" ref={stack} onScroll={onStackScroll}>
+            {releases.map((r,i)=><ReleasePanel key={r.id} release={r} meta={r.label||typeOf(r)} active={carousel||i===index} current={i===index} id={i===index?"release-panel":undefined} labelledBy={i===index?`disco-${r.id}`:undefined}/>)}
           </div>
+          {carousel?<div className="rp-swipe">
+            <div className="rp-dots" role="group" aria-label="Choose a release">{releases.map((r,i)=><button key={r.id} className={i===index?"is-on":""} aria-label={`Release ${i+1} of ${count}: ${r.titleText}`} aria-current={i===index||undefined} onClick={()=>select(i)}><span/></button>)}</div>
+            <p className={`rp-swipe-hint ${swiped?"is-done":""}`} aria-hidden="true"><ChevronLeft size={16}/>Swipe for more releases<ChevronRight size={16}/></p>
+          </div>:
           <nav className="rp-pager" aria-label="Browse releases">
             <button onClick={()=>select(index-1)} aria-label={`Previous release: ${prev.titleText}`}><ChevronLeft size={20}/><span className="rp-pager-label">Prev</span><span className="rp-pager-name">{prev.titleText}</span></button>
             <span className="rp-pager-count" aria-live="polite">{String(index+1).padStart(2,"0")} / {String(count).padStart(2,"0")}</span>
             <button onClick={()=>select(index+1)} aria-label={`Next release: ${next.titleText}`}><span className="rp-pager-name">{next.titleText}</span><span className="rp-pager-label">Next</span><ChevronRight size={20}/></button>
-          </nav>
+          </nav>}
         </div>
       </div>
     </section>
