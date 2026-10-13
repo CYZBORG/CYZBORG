@@ -515,3 +515,37 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .product-grid{gap:28px}
 .product-info{padding-top:14px}
 }
+
+/* ============ Audio round 5: release list for phones & tablets ============ */
+.rl{list-style:none;margin:24px 0 0;padding:0;border-top:1px solid var(--line)}
+.rl-item{border-bottom:1px solid var(--line)}
+.rl-row{display:grid;grid-template-columns:64px minmax(0,1fr) 28px;align-items:center;gap:16px;width:100%;padding:12px 0;border:0;background:none;text-align:left;color:#fff;cursor:pointer}
+.rl-cover{width:64px;height:64px;border-radius:8px;object-fit:cover;background:#141414;filter:brightness(.8);transition:filter 200ms ease}
+.rl-text{display:flex;flex-direction:column;gap:5px;min-width:0}
+.rl-name{font:600 18px/1.2 var(--heading);text-transform:uppercase;letter-spacing:.01em}
+.rl-type{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8c8c8c}
+.rl-new{padding:2px 7px;border-radius:999px;background:var(--copper);color:#000;font-size:10px;letter-spacing:.1em}
+.rl-chev{color:#8c8c8c;justify-self:end;transition:transform 260ms cubic-bezier(.16,1,.3,1),color 160ms ease}
+.rl-item.is-open .rl-cover{filter:none}
+.rl-item.is-open .rl-chev{transform:rotate(180deg);color:var(--copper)}
+.rl-item.is-open .rl-type{color:#db9a60}
+.rl-row:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:10px}
+.rl-row:active .rl-cover{transform:scale(.97)}
+.rl-body{padding:4px 0 20px;animation:rl-open 320ms cubic-bezier(.16,1,.3,1)}
+.rl-body .rp-desc{margin-top:0;font-size:16px;line-height:1.65}
+.rl-body .rp-tracks{margin-top:18px;max-width:none}
+@keyframes rl-open{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media(min-width:768px){
+.rl-row{grid-template-columns:88px minmax(0,1fr) 28px;gap:20px;padding:14px 0}
+.rl-cover{width:88px;height:88px;border-radius:10px}
+.rl-name{font-size:22px}
+.rl-body{padding:4px 0 24px 108px}
+.rl-body .rp-desc{font-size:17px;max-width:60ch}
+}
+@media(prefers-reduced-motion:reduce){.rl-body{animation:none}.rl-chev{transition:none}}
+
+/* Shirts (phones): trim the space under the shirt; the label overlays the image corner */
+@media(max-width:767px){
+.product-image{aspect-ratio:1.32;padding:12px 18px 12px}
+.view-label{bottom:10px;right:12px;padding:5px 9px;border-radius:999px;background:#000a}
+}
