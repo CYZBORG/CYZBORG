@@ -288,3 +288,4 @@ From 1024px, Audio releases other than PSYCHOTIC Dancing use full-height flex co
 - **System backdrop:** enlarged (270% width on phones, 170% on tablets) at 24% opacity, centered on the story paragraphs.
 - **Release list (phones, tablets):** the latest release is always open at the top as a featured block (no toggle). The other seven sit in one collapsed "Earlier releases" row with overlapping cover thumbnails and a count; opening it shows the single-open accordion list.
 - **Section spacing (phones, tablets):** every section's top and bottom padding is half the earlier values (phone 20–28px, tablet 20–32px).
+- **Audio subhead:** reads "8 releases / Now streaming" on one line on phones and tablets; desktop keeps "…on major platforms".

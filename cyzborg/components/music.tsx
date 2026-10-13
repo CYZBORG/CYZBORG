@@ -167,7 +167,7 @@ export default function Music(){
       <div className="shell">
         <header className="audio-head">
           <h2>AUDIO</h2>
-          <p>{count} releases <span aria-hidden="true">/</span> Now streaming on major platforms.</p>
+          <p>{count} releases <span aria-hidden="true">/</span> Now streaming<span className="audio-head-long"> on major platforms</span></p>
         </header>
         {compact?<ReleaseList/>:<>
           <div className={`disco ${edges.start?"at-start":""} ${edges.end?"at-end":""}`}>
