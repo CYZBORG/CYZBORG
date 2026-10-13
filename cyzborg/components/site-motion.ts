@@ -69,10 +69,14 @@ function choreography(){
     onEnter:els=>gsap.fromTo(els,{y:32,opacity:0},{y:0,opacity:1,duration:0.7,ease:EXPO,stagger:{each:0.06,amount:0.3},overwrite:true})});
   gsap.set(".product",{opacity:0});
 
-  gsap.utils.toArray<HTMLElement>(".release-art").forEach(art=>{
+  gsap.utils.toArray<HTMLElement>(".rp-art").forEach(art=>{
     gsap.fromTo(art,{filter:"blur(12px)",scale:.94,opacity:0},{filter:"blur(0px)",scale:1,opacity:1,duration:0.9,ease:EXPO,clearProps:"filter",
       scrollTrigger:{trigger:art,start:"top 85%",once:true}});
   });
+
+  ScrollTrigger.batch(".disco-card",{start:"top 94%",once:true,
+    onEnter:els=>gsap.fromTo(els,{y:16,opacity:0},{y:0,opacity:1,duration:0.6,ease:EXPO,stagger:{each:0.04,amount:0.28},overwrite:true})});
+  gsap.set(".disco-card",{opacity:0});
 
   ScrollTrigger.batch(".network-links > a",{start:"top 92%",once:true,
     onEnter:els=>gsap.fromTo(els,{y:20,opacity:0},{y:0,opacity:1,duration:0.6,ease:EXPO,stagger:0.05,overwrite:true})});
