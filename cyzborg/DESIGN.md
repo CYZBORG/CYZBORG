@@ -2,9 +2,9 @@
 name: CYZBORG
 description: Dark photographic gymwear, audio, and augmented-athlete identity.
 colors:
-  copper: "#b87333"
-  copper-text: "#db9a60"
-  copper-hover: "#d99a60"
+  copper: "#fb5607"
+  copper-text: "#fb5607"
+  copper-hover: "#ff7433"
   blue: "#00a3ff"
   background: "#000"
   surface: "#101010"
@@ -12,7 +12,7 @@ colors:
   ink: "#fff"
   muted: "#b6b6b6"
   line: "#ffffff26"
-  selected-surface: "#342316"
+  selected-surface: "#3a1606"
   audio-hover: "#07344d"
 typography:
   official-lettering:
@@ -297,3 +297,5 @@ From 1024px, Audio releases other than PSYCHOTIC Dancing use full-height flex co
 - **Tablet board:** 22px card padding, 26–34px title, 4-line description, compact tracks and rows. In landscape the list takes the card's height and scrolls.
 - **Release board height:** all release cards render in one grid cell and only the selected one is visible, so the card is always as tall as PSYCHOTIC Dancing (the tallest) on every device.
 - **Cover play:** the release-board cover and the phone card cover carry the copper play button (56px; 36px on the phone card). It plays the first track and turns blue with an audio-lines icon while playing. On phones the card header is a separate close button, so the cover play does not close the card.
+
+- **Orange (2026-10-13):** every copper tone (#b87333, #db9a60, #d99a60) is now official Nitro Orange #FB5607; hover is #ff7433. The token is still named `copper` in code.
