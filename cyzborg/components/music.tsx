@@ -71,16 +71,28 @@ function ReleasePanel({release,meta,id,labelledBy,active=true}:{release:Release;
   </article>;
 }
 
+// Cover art with a play button that sends the release's first track to the audio dock.
+function PlayableCover({release,className,size=22}:{release:Release;className:string;size?:number}){
+  const dock=useAudioDock();
+  const tracks=tracksOf(release);
+  const first=tracks.find(t=>t.embedUrl);
+  const playing=tracks.some(t=>dock.current?.id===t.id);
+  return <div className={`pcov ${className}`}>
+    <img src={release.coverUrl} alt={`${release.titleText} cover art`}/>
+    {first&&<button className={`rp-cover-play ${playing?"is-playing":""}`} onClick={e=>{e.stopPropagation();dock.play({id:first.id,title:first.name,embedUrl:first.embedUrl});}} aria-label={playing?`${release.titleText} is in the audio player`:`Play ${release.titleText}`}>{playing?<AudioLines size={size}/>:<Play size={size} fill="currentColor"/>}</button>}
+  </div>;
+}
+
 // Phones: the open release sits in a boxed card; earlier releases live in one expandable group.
 // Only one release is open at a time, the new release included.
 function PhoneCard({release,isNew,onClose}:{release:Release;isNew:boolean;onClose:()=>void}){
   return <div className="pc" id={`rl-body-${release.id}`}>
     <img className="rb-bg" src={release.coverUrl} alt=""/>
-    <button className="pc-head" aria-expanded="true" onClick={onClose}>
-      <img className="pc-cover" src={release.coverUrl} alt={`${release.titleText} cover art`}/>
-      <span className="rl-text"><span className="rp-meta">{isNew&&<span className="rl-new">NEW</span>}{release.label?release.label.replace(/^NEW RELEASE\s*[•·]\s*/i,""):typeOf(release)}</span><span className="pc-title">{release.titleText}</span></span>
-      <ChevronDown className="rl-chev" size={22} aria-hidden="true"/>
-    </button>
+    <div className="pc-head">
+      <PlayableCover release={release} className="pc-cover" size={16}/>
+      <button className="pc-close" aria-expanded="true" aria-label={`Close ${release.titleText}`} onClick={onClose}><span className="rl-text"><span className="rp-meta">{isNew&&<span className="rl-new">NEW</span>}{release.label?release.label.replace(/^NEW RELEASE\s*[•·]\s*/i,""):typeOf(release)}</span><span className="pc-title">{release.titleText}</span></span>
+      <ChevronDown className="rl-chev" size={22} aria-hidden="true"/></button>
+    </div>
     <Description release={release}/>
     <Tracklist release={release}/>
   </div>;
@@ -140,7 +152,7 @@ function ReleaseBoard(){
           <p className="rb-desc">{x.description.join(" ")}</p>
           <Tracklist release={x}/>
         </div>
-        <img className="rb-cover" src={x.coverUrl} alt={`${x.titleText} cover art`}/>
+        <PlayableCover release={x} className="rb-cover"/>
       </article>)}
     </div>
     <ul className="rb-list" aria-label="All releases">
