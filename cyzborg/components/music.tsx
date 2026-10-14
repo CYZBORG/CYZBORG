@@ -73,49 +73,57 @@ function ReleasePanel({release,meta,id,labelledBy,active=true}:{release:Release;
   </article>;
 }
 
-// Phones & tablets: the latest release is featured open; earlier releases live in one expandable group.
+// Phones: the open release sits in a boxed card; earlier releases live in one expandable group.
+// Only one release is open at a time, the new release included.
+function PhoneCard({release,isNew,onClose}:{release:Release;isNew:boolean;onClose:()=>void}){
+  return <div className="pc" id={`rl-body-${release.id}`}>
+    <img className="rb-bg" src={release.coverUrl} alt=""/>
+    <button className="pc-head" aria-expanded="true" onClick={onClose}>
+      <img className="pc-cover" src={release.coverUrl} alt={`${release.titleText} cover art`}/>
+      <span className="rl-text"><span className="rp-meta">{isNew&&<span className="rl-new">NEW</span>}{release.label?release.label.replace(/^NEW RELEASE\s*[•·]\s*/i,""):typeOf(release)}</span><span className="pc-title">{release.titleText}</span></span>
+      <ChevronDown className="rl-chev" size={22} aria-hidden="true"/>
+    </button>
+    <Description release={release}/>
+    <Tracklist release={release}/>
+  </div>;
+}
+function PhoneRow({release,isNew,onOpen}:{release:Release;isNew:boolean;onOpen:()=>void}){
+  return <button className="rl-row" aria-expanded="false" aria-controls={`rl-body-${release.id}`} onClick={onOpen}>
+    <img className="rl-cover" src={release.coverUrl} alt="" loading="lazy"/>
+    <span className="rl-text"><span className="rl-name">{release.titleText}</span><span className="rl-type">{isNew&&<span className="rl-new">NEW</span>}{typeOf(release)}</span></span>
+    <ChevronDown className="rl-chev" size={22} aria-hidden="true"/>
+  </button>;
+}
 function ReleaseList(){
-  const [latest,...older]=releases;
+  const [open,setOpen]=useState(0);
   const [showOlder,setShowOlder]=useState(false);
-  const [open,setOpen]=useState(-1);
-  const items=useRef<(HTMLLIElement|null)[]>([]);
+  const items=useRef<(HTMLElement|null)[]>([]);
   const anchor=useRef<{i:number;top:number}|null>(null);
-  function toggle(i:number){
+  function choose(i:number){
     const el=items.current[i];
     anchor.current=el?{i,top:el.getBoundingClientRect().top}:null;
     setOpen(o=>o===i?-1:i);
   }
-  // Keep the tapped row where the finger was, even when a release above it closes.
+  // Keep the tapped release where the finger was, even when one above it closes.
   useLayoutEffect(()=>{
     const a=anchor.current;anchor.current=null;if(!a)return;
     const el=items.current[a.i];if(!el)return;
     const shift=el.getBoundingClientRect().top-a.top;
     if(Math.abs(shift)>1)window.scrollBy({top:shift,behavior:"instant" as ScrollBehavior});
   },[open]);
+  const [latest,...older]=releases;
+  const item=(r:Release,i:number)=><div key={r.id} ref={el=>{items.current[i]=el;}} className="rl-slot">
+    {open===i?<PhoneCard release={r} isNew={i===0} onClose={()=>choose(i)}/>:<PhoneRow release={r} isNew={i===0} onOpen={()=>choose(i)}/>}
+  </div>;
   return <div className="rl-wrap">
-    <div className="rl-item rl-featured is-open">
-      <div className="rl-row">
-        <img className="rl-cover" src={latest.coverUrl} alt="" loading="lazy"/>
-        <span className="rl-text"><span className="rl-name">{latest.titleText}</span><span className="rl-type"><span className="rl-new">NEW</span>{typeOf(latest)}</span></span>
-      </div>
-      <div className="rl-body"><Description release={latest}/><Tracklist release={latest}/></div>
-    </div>
+    {item(latest,0)}
     <div className={`rl-archive ${showOlder?"is-open":""}`}>
-      <button className="rl-archive-toggle" aria-expanded={showOlder} aria-controls="rl-older" onClick={()=>{setShowOlder(v=>!v);setOpen(-1);}}>
+      <button className="rl-archive-toggle" aria-expanded={showOlder} aria-controls="rl-older" onClick={()=>{setShowOlder(v=>!v);if(showOlder&&open>0)setOpen(-1);}}>
         <span className="rl-stack" aria-hidden="true">{older.slice(0,4).map(r=><img key={r.id} src={r.coverUrl} alt="" loading="lazy"/>)}</span>
         <span className="rl-text"><span className="rl-name">Earlier releases</span><span className="rl-type">{older.length} releases</span></span>
         <ChevronDown className="rl-chev" size={22} aria-hidden="true"/>
       </button>
-      {showOlder&&<ol className="rl" id="rl-older" aria-label="Earlier CYZBORG releases">
-        {older.map((r,i)=>{const isOpen=open===i;return <li key={r.id} ref={el=>{items.current[i]=el;}} className={`rl-item ${isOpen?"is-open":""}`}>
-          <button className="rl-row" aria-expanded={isOpen} aria-controls={`rl-body-${r.id}`} onClick={()=>toggle(i)}>
-            <img className="rl-cover" src={r.coverUrl} alt="" loading="lazy"/>
-            <span className="rl-text"><span className="rl-name">{r.titleText}</span><span className="rl-type">{typeOf(r)}</span></span>
-            <ChevronDown className="rl-chev" size={22} aria-hidden="true"/>
-          </button>
-          {isOpen&&<div className="rl-body" id={`rl-body-${r.id}`}><Description release={r}/><Tracklist release={r}/></div>}
-        </li>;})}
-      </ol>}
+      {showOlder&&<div className="rl-older" id="rl-older" role="group" aria-label="Earlier CYZBORG releases">{older.map((r,i)=>item(r,i+1))}</div>}
     </div>
   </div>;
 }

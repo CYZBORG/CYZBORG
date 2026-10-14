@@ -637,3 +637,22 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .rb .rp-track-name{grid-column:2;grid-row:1;align-self:end}
 .rb .rp-track .rp-platforms{grid-column:2;grid-row:2;margin-left:-8px;gap:8px}
 .rb .rp-track-play{grid-column:3;grid-row:1/3;align-self:center;padding:0 16px}
+
+/* ============ Phone Audio: boxed open release (matches the tablet card) ============ */
+.rl-wrap{border-top:0}
+.rl-slot{border-bottom:1px solid var(--line)}
+.rl-slot:has(.pc){border-bottom:0;padding-block:10px}
+.pc{position:relative;isolation:isolate;overflow:hidden;border-radius:12px;border:1px solid #ffffff2e;background:#0e0e0e;padding:16px 16px 6px;animation:rl-open 320ms cubic-bezier(.16,1,.3,1)}
+.pc:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#000c,#000e 60%)}
+.pc-head{display:grid;grid-template-columns:88px minmax(0,1fr) 24px;gap:14px;align-items:center;width:100%;padding:0;border:0;background:none;color:#fff;text-align:left;cursor:pointer}
+.pc-cover{width:88px;height:88px;border-radius:8px;object-fit:cover;box-shadow:0 12px 26px #000c}
+.pc-head .rp-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11px}
+.pc-title{display:block;margin-top:6px;font:600 22px/1.08 var(--heading);text-transform:uppercase}
+.pc-head .rl-chev{transform:rotate(180deg);color:var(--copper)}
+.pc-head:focus-visible{outline:2px solid var(--blue);outline-offset:4px;border-radius:8px}
+.pc .rp-desc{margin-top:16px;font-size:15.5px;line-height:1.65}
+.pc .rp-tracks{margin-top:14px}
+.pc .rp-track:last-child{border-bottom:0}
+.rl-archive{border-bottom:1px solid var(--line)}
+.rl-older{border-top:1px solid var(--line);animation:rl-open 320ms cubic-bezier(.16,1,.3,1)}
+.rl-older>.rl-slot:last-child{border-bottom:0}
