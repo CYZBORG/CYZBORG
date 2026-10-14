@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
-import { ChevronLeft, ChevronRight, ChevronDown, Play, AudioLines } from "lucide-react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { ChevronRight, ChevronDown, Play, AudioLines } from "lucide-react";
 import { siSpotify, siApplemusic, siYoutubemusic } from "simple-icons";
 import { useAudioDock } from "@/components/audio-dock";
 import catalog from "@/app/music-data.json";
@@ -16,8 +16,6 @@ const PLATFORMS=[
 ] as const;
 const hasLink=(u?:string)=>!!u&&u!=="#";
 const releases=catalog.albums as Release[];
-const reducedMotion=()=>window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const COMPACT="(max-width: 1023px), (pointer: coarse) and (max-width: 1366px)";
 const PHONE="(max-width: 767px)";
 
 // Every release is described the same way: a type line and a tracklist (singles have one track).
@@ -145,56 +143,16 @@ function ReleaseBoard(){
     </article>
     <ul className="rb-list" aria-label="All releases">
       {releases.map((x,i)=><li key={x.id}><button className={i===sel?"is-on":""} aria-pressed={i===sel} onClick={()=>setSel(i)}>
-        <img src={x.coverUrl} alt="" loading="lazy"/><span><strong>{x.titleText}</strong><small>{i===0?"New · ":""}{typeOf(x)}</small></span><ChevronRight size={18} aria-hidden="true"/>
+        <span className="rb-no" aria-hidden="true">{String(i+1).padStart(2,"0")}</span><img src={x.coverUrl} alt="" loading="lazy"/><span><strong>{x.titleText}</strong><small>{i===0?"New · ":""}{typeOf(x)}</small></span><ChevronRight size={18} aria-hidden="true"/>
       </button></li>)}
     </ul>
   </div>;
 }
 
 export default function Music(){
-  const [index,setIndex]=useState(0);
-  const [compact,setCompact]=useState(false);
   const [phone,setPhone]=useState(false);
-  const rail=useRef<HTMLDivElement>(null);
-  const stage=useRef<HTMLDivElement>(null);
-  const [edges,setEdges]=useState({start:true,end:false});
-  const count=releases.length;
-
   useEffect(()=>{const m=window.matchMedia(PHONE);const u=()=>setPhone(m.matches);u();m.addEventListener("change",u);return()=>m.removeEventListener("change",u);},[]);
-  useEffect(()=>{const m=window.matchMedia(COMPACT);const u=()=>setCompact(m.matches);u();m.addEventListener("change",u);return()=>m.removeEventListener("change",u);},[]);
-  function updateEdges(){const el=rail.current;if(!el)return;setEdges({start:el.scrollLeft<=4,end:el.scrollLeft+el.clientWidth>=el.scrollWidth-4});}
-  useEffect(()=>{if(compact)return;updateEdges();const el=rail.current;if(!el)return;const ro=new ResizeObserver(updateEdges);ro.observe(el);return()=>ro.disconnect();},[compact]);
-
-  // Keep the chosen cover visible in the rail without scrolling the page.
-  function revealCard(i:number){
-    const el=rail.current;const card=el?.querySelectorAll<HTMLElement>(".disco-card")[i];if(!el||!card)return;
-    const left=card.offsetLeft-el.offsetLeft,right=left+card.offsetWidth;
-    if(left<el.scrollLeft)el.scrollTo({left:left-8,behavior:reducedMotion()?"auto":"smooth"});
-    else if(right>el.scrollLeft+el.clientWidth)el.scrollTo({left:right-el.clientWidth+8,behavior:reducedMotion()?"auto":"smooth"});
-  }
-  function select(i:number,focus=false){
-    const next=(i+count)%count;
-    setIndex(next);revealCard(next);
-    if(focus)rail.current?.querySelectorAll<HTMLButtonElement>(".disco-card")[next]?.focus({preventScroll:true});
-    // After paging from below, bring the release's top back into view.
-    requestAnimationFrame(()=>{
-      const el=stage.current;if(!el)return;
-      const header=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-height"))||72;
-      const top=el.getBoundingClientRect().top;
-      if(top<header)window.scrollTo({top:top+window.scrollY-header-12,behavior:reducedMotion()?"auto":"smooth"});
-    });
-  }
-  function onKey(e:KeyboardEvent<HTMLDivElement>){
-    let next=-1;
-    if(e.key==="ArrowRight")next=index+1;
-    if(e.key==="ArrowLeft")next=index-1;
-    if(e.key==="Home")next=0;
-    if(e.key==="End")next=count-1;
-    if(next!==-1){e.preventDefault();select(next,true);}
-  }
-  function page(dir:1|-1){const el=rail.current;if(!el)return;el.scrollBy({left:dir*el.clientWidth*.8,behavior:reducedMotion()?"auto":"smooth"});}
-  const prev=releases[(index-1+count)%count],next=releases[(index+1)%count];
-
+  const count=releases.length;
   return <>
     <section id="music" className="music-catalog section-block">
       <img className="music-brand-art" src="/detailed-helmet.svg" alt="" aria-hidden="true" loading="lazy"/>
@@ -203,30 +161,7 @@ export default function Music(){
           <h2>AUDIO</h2>
           <p>{count} releases <span aria-hidden="true">/</span> Now streaming<span className="audio-head-long"> on major platforms</span></p>
         </header>
-        {compact?(phone?<ReleaseList/>:<ReleaseBoard/>):<>
-          <div className={`disco ${edges.start?"at-start":""} ${edges.end?"at-end":""}`}>
-            <button className="disco-arrow prev" onClick={()=>page(-1)} aria-label="Scroll releases left" tabIndex={-1} hidden={edges.start}><ChevronLeft/></button>
-            <div className="disco-rail" ref={rail} role="tablist" aria-label="CYZBORG releases" onScroll={updateEdges} onKeyDown={onKey}>
-              {releases.map((r,i)=><button key={r.id} id={`disco-${r.id}`} className={`disco-card ${i===index?"is-selected":""}`} role="tab" aria-selected={i===index} aria-controls="release-panel" tabIndex={i===index?0:-1} onClick={()=>select(i)}>
-                <span className="disco-cover"><img src={r.coverUrl} alt="" loading="lazy"/>{i===0&&<span className="disco-badge">NEW</span>}</span>
-                <span className="disco-name">{r.titleText}</span>
-                <span className="disco-type">{typeOf(r)}</span>
-              </button>)}
-            </div>
-            <button className="disco-arrow next" onClick={()=>page(1)} aria-label="Scroll releases right" tabIndex={-1} hidden={edges.end}><ChevronRight/></button>
-          </div>
-          <div className="rp-stage" ref={stage}>
-            {/* All releases share one grid cell, so the section is always as tall as the longest one and never jumps. */}
-            <div className="rp-stack">
-              {releases.map((r,i)=><ReleasePanel key={r.id} release={r} meta={r.label||typeOf(r)} active={i===index} id={i===index?"release-panel":undefined} labelledBy={i===index?`disco-${r.id}`:undefined}/>)}
-            </div>
-            <nav className="rp-pager" aria-label="Browse releases">
-              <button onClick={()=>select(index-1)} aria-label={`Previous release: ${prev.titleText}`}><ChevronLeft size={20}/><span className="rp-pager-label">Prev</span><span className="rp-pager-name">{prev.titleText}</span></button>
-              <span className="rp-pager-count" aria-live="polite">{String(index+1).padStart(2,"0")} / {String(count).padStart(2,"0")}</span>
-              <button onClick={()=>select(index+1)} aria-label={`Next release: ${next.titleText}`}><span className="rp-pager-name">{next.titleText}</span><span className="rp-pager-label">Next</span><ChevronRight size={20}/></button>
-            </nav>
-          </div>
-        </>}
+        {phone?<ReleaseList/>:<ReleaseBoard/>}
       </div>
     </section>
     <section className="fan-favorite section-block" id="fan-favorite"><div className="shell">
