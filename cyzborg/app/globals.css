@@ -752,3 +752,6 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .header-helmet img{transition:transform 200ms ease}
 @media(hover:hover) and (pointer:fine){.header-helmet:hover{opacity:1}.header-helmet:hover img{transform:scale(1.06)}}
 @media(prefers-reduced-motion:reduce){.header-helmet img{transition:none}}
+/* Desktop: System → Network uses the same rhythm as Launch → Audio; rail sits closer to the System copy */
+@media(min-width:1024px) and (hover:hover) and (pointer:fine){#mission{padding-bottom:56px}#join{padding-top:46px}.system-rail{margin-top:28px}}
+@media(min-width:1800px) and (hover:hover) and (pointer:fine){#mission{padding-bottom:48px}#join{padding-top:37px}}
