@@ -748,3 +748,7 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 /* "SOON" tag centered under Shop and Origin */
 .nav-coming small{font-size:9px;line-height:1;letter-spacing:.1em;padding:3px 5px;border-radius:3px;background:#fb560724;color:var(--copper);margin-top:4px}
 .mobile-menu .nav-coming small{display:inline-block;margin:0 0 0 8px;vertical-align:middle}
+/* Helmet hover: grows slightly (as on the alt design) instead of fading */
+.header-helmet img{transition:transform 200ms ease}
+@media(hover:hover) and (pointer:fine){.header-helmet:hover{opacity:1}.header-helmet:hover img{transform:scale(1.06)}}
+@media(prefers-reduced-motion:reduce){.header-helmet img{transition:none}}
