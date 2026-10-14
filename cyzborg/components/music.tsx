@@ -129,18 +129,20 @@ function ReleaseList(){
 // Tablets: featured release card beside a scrollable list of every release.
 function ReleaseBoard(){
   const [sel,setSel]=useState(0);
-  const r=releases[sel];
   return <div className="rb">
-    <article className="rb-feature" key={r.id}>
-      <img className="rb-bg" src={r.coverUrl} alt=""/>
-      <div className="rb-copy">
-        <p className="rp-meta">{r.label||typeOf(r)}</p>
-        <h3 className="rb-title">{r.titleText}</h3>
-        <p className="rb-desc">{r.description.join(" ")}</p>
-        <Tracklist release={r}/>
-      </div>
-      <img className="rb-cover" src={r.coverUrl} alt={`${r.titleText} cover art`}/>
-    </article>
+    {/* Every release is laid out in the same cell, so the card is always as tall as the tallest one (PSYCHOTIC Dancing) and never changes size. */}
+    <div className="rb-stack">
+      {releases.map((x,i)=><article className={`rb-feature ${i===sel?"is-on":""}`} key={x.id} aria-hidden={i!==sel||undefined} inert={i!==sel||undefined}>
+        <img className="rb-bg" src={x.coverUrl} alt=""/>
+        <div className="rb-copy">
+          <p className="rp-meta">{x.label||typeOf(x)}</p>
+          <h3 className="rb-title">{x.titleText}</h3>
+          <p className="rb-desc">{x.description.join(" ")}</p>
+          <Tracklist release={x}/>
+        </div>
+        <img className="rb-cover" src={x.coverUrl} alt={`${x.titleText} cover art`}/>
+      </article>)}
+    </div>
     <ul className="rb-list" aria-label="All releases">
       {releases.map((x,i)=><li key={x.id}><button className={i===sel?"is-on":""} aria-pressed={i===sel} onClick={()=>setSel(i)}>
         <span className="rb-no" aria-hidden="true">{String(i+1).padStart(2,"0")}</span><img src={x.coverUrl} alt="" loading="lazy"/><span><strong>{x.titleText}</strong><small>{i===0?"New · ":""}{typeOf(x)}</small></span><ChevronRight size={18} aria-hidden="true"/>
