@@ -730,3 +730,21 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .pc-close{display:grid;grid-template-columns:minmax(0,1fr) 24px;gap:10px;align-items:center;width:100%;padding:0;border:0;background:none;color:#fff;text-align:left;cursor:pointer}
 .pc-close .rl-chev{transform:rotate(180deg);color:var(--copper)}
 .pc-close:focus-visible{outline:2px solid var(--blue);outline-offset:4px;border-radius:8px}
+
+/* ============ Header: floating rounded bar (from the alt design) ============ */
+:root{--bar-gap:12px;--header-height:96px}
+@media(max-width:767px){:root{--bar-gap:8px;--header-height:68px}}
+.site-header,.site-header.is-scrolled,.site-header.is-menu-open{background:transparent;padding-top:var(--bar-gap)}
+.header-inner{height:calc(var(--header-height) - var(--bar-gap));border-radius:12px;border:1px solid transparent;padding-inline:22px;background:transparent;transition:background 180ms ease,border-color 180ms ease,box-shadow 180ms ease}
+.site-header.is-scrolled .header-inner{background:rgba(0,0,0,.9);border-color:#ffffff1f;box-shadow:0 12px 30px #0009;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.site-header.is-menu-open .header-inner{background:#080808;border-color:#ffffff1f}
+/* Helmet: 104px tall on an 84px bar, so it overhangs top and bottom equally */
+.header-helmet{width:76px;height:104px;filter:drop-shadow(0 6px 14px #000a)}
+@media(max-width:767px){.header-inner{padding-inline:12px}.header-helmet{width:56px;height:76px}}
+/* Menu drops from under the bar's right edge */
+.mobile-menu{top:calc(100% + 8px);right:calc((100% - min(1940px,100% - 80px)) / 2);border:1px solid #ffffff1f;border-radius:12px}
+@media(max-width:1279px){.mobile-menu{right:32px}}
+@media(max-width:767px){.mobile-menu{right:16px}}
+/* "SOON" tag centered under Shop and Origin */
+.nav-coming small{font-size:9px;line-height:1;letter-spacing:.1em;padding:3px 5px;border-radius:3px;background:#fb560724;color:var(--copper);margin-top:4px}
+.mobile-menu .nav-coming small{display:inline-block;margin:0 0 0 8px;vertical-align:middle}
