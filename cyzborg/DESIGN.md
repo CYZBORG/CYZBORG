@@ -289,3 +289,4 @@ From 1024px, Audio releases other than PSYCHOTIC Dancing use full-height flex co
 - **Release list (phones, tablets):** the latest release is always open at the top as a featured block (no toggle). The other seven sit in one collapsed "Earlier releases" row with overlapping cover thumbnails and a count; opening it shows the single-open accordion list.
 - **Section spacing (phones, tablets):** every section's top and bottom padding is half the earlier values (phone 20–28px, tablet 20–32px).
 - **Audio subhead:** reads "8 releases / Now streaming" on one line on phones and tablets; desktop keeps "…on major platforms".
+- **Tablet Audio (768px+ touch / 768–1023px):** featured release card (blurred cover backdrop, copy + tracklist, tilted cover) beside a scrollable list of all releases with a copper selection bar; stacked in portrait. Phones keep the featured + Earlier releases list; desktop keeps the rail.

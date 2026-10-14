@@ -18,6 +18,7 @@ const hasLink=(u?:string)=>!!u&&u!=="#";
 const releases=catalog.albums as Release[];
 const reducedMotion=()=>window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const COMPACT="(max-width: 1023px), (pointer: coarse) and (max-width: 1366px)";
+const PHONE="(max-width: 767px)";
 
 // Every release is described the same way: a type line and a tracklist (singles have one track).
 function tracksOf(r:Release):Track[]{
@@ -119,14 +120,39 @@ function ReleaseList(){
   </div>;
 }
 
+// Tablets: featured release card beside a scrollable list of every release.
+function ReleaseBoard(){
+  const [sel,setSel]=useState(0);
+  const r=releases[sel];
+  return <div className="rb">
+    <article className="rb-feature" key={r.id}>
+      <img className="rb-bg" src={r.coverUrl} alt=""/>
+      <div className="rb-copy">
+        <p className="rp-meta">{r.label||typeOf(r)}</p>
+        <h3 className="rb-title">{r.titleText}</h3>
+        <p className="rb-desc">{r.description.join(" ")}</p>
+        <Tracklist release={r}/>
+      </div>
+      <img className="rb-cover" src={r.coverUrl} alt={`${r.titleText} cover art`}/>
+    </article>
+    <ul className="rb-list" aria-label="All releases">
+      {releases.map((x,i)=><li key={x.id}><button className={i===sel?"is-on":""} aria-pressed={i===sel} onClick={()=>setSel(i)}>
+        <img src={x.coverUrl} alt="" loading="lazy"/><span><strong>{x.titleText}</strong><small>{i===0?"New · ":""}{typeOf(x)}</small></span><ChevronRight size={18} aria-hidden="true"/>
+      </button></li>)}
+    </ul>
+  </div>;
+}
+
 export default function Music(){
   const [index,setIndex]=useState(0);
   const [compact,setCompact]=useState(false);
+  const [phone,setPhone]=useState(false);
   const rail=useRef<HTMLDivElement>(null);
   const stage=useRef<HTMLDivElement>(null);
   const [edges,setEdges]=useState({start:true,end:false});
   const count=releases.length;
 
+  useEffect(()=>{const m=window.matchMedia(PHONE);const u=()=>setPhone(m.matches);u();m.addEventListener("change",u);return()=>m.removeEventListener("change",u);},[]);
   useEffect(()=>{const m=window.matchMedia(COMPACT);const u=()=>setCompact(m.matches);u();m.addEventListener("change",u);return()=>m.removeEventListener("change",u);},[]);
   function updateEdges(){const el=rail.current;if(!el)return;setEdges({start:el.scrollLeft<=4,end:el.scrollLeft+el.clientWidth>=el.scrollWidth-4});}
   useEffect(()=>{if(compact)return;updateEdges();const el=rail.current;if(!el)return;const ro=new ResizeObserver(updateEdges);ro.observe(el);return()=>ro.disconnect();},[compact]);
@@ -169,7 +195,7 @@ export default function Music(){
           <h2>AUDIO</h2>
           <p>{count} releases <span aria-hidden="true">/</span> Now streaming<span className="audio-head-long"> on major platforms</span></p>
         </header>
-        {compact?<ReleaseList/>:<>
+        {compact?(phone?<ReleaseList/>:<ReleaseBoard/>):<>
           <div className={`disco ${edges.start?"at-start":""} ${edges.end?"at-end":""}`}>
             <button className="disco-arrow prev" onClick={()=>page(-1)} aria-label="Scroll releases left" tabIndex={-1} hidden={edges.start}><ChevronLeft/></button>
             <div className="disco-rail" ref={rail} role="tablist" aria-label="CYZBORG releases" onScroll={updateEdges} onKeyDown={onKey}>

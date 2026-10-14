@@ -604,3 +604,36 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .audio-head p{white-space:nowrap}
 .audio-head p span.audio-head-long{color:inherit;margin:0}
 @media(max-width:1023px),(pointer:coarse) and (max-width:1366px){.audio-head-long{display:none}}
+
+/* ============ Tablet Audio: featured card + release list (from the alt design) ============ */
+.rb{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:16px;align-items:stretch;margin-top:24px}
+.rb-feature{position:relative;isolation:isolate;overflow:hidden;border-radius:12px;border:1px solid var(--line);background:#0e0e0e;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:24px;align-items:center;padding:28px;animation:rl-open 360ms cubic-bezier(.16,1,.3,1)}
+.rb-bg{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;z-index:-2;filter:blur(40px) saturate(1.3) brightness(.35)}
+.rb-feature:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#000e 30%,#0009)}
+.rb-title{margin-top:10px;font-size:clamp(28px,3.6vw,40px);line-height:1.04;text-transform:uppercase;text-wrap:balance}
+.rb-desc{margin-top:12px;font-size:15px;line-height:1.65;color:#c8c8c8;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.rb-cover{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;box-shadow:0 24px 50px #000c;transform:rotate(2deg)}
+.rb .rp-tracks{margin-top:18px;max-width:none}
+.rb .rp-track{grid-template-columns:24px minmax(0,1fr) auto;row-gap:2px;padding-block:8px}
+.rb-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:#0e0e0e;overflow-y:auto;max-height:560px;scrollbar-width:thin;scrollbar-color:#444 transparent}
+.rb-list li+li{border-top:1px solid var(--line)}
+.rb-list button{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr) 18px;gap:14px;align-items:center;width:100%;padding:12px 14px;border:0;background:none;color:#cfcfcf;text-align:left;cursor:pointer;transition:background 160ms ease}
+.rb-list button:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:2px;background:var(--copper);transform:scaleY(0);transition:transform 220ms cubic-bezier(.16,1,.3,1)}
+.rb-list button.is-on{background:#ffffff08;color:#fff}
+.rb-list button.is-on:before{transform:none}
+.rb-list img{width:52px;height:52px;border-radius:6px;object-fit:cover}
+.rb-list strong{display:block;font:500 15px/1.2 var(--heading);text-transform:uppercase}
+.rb-list small{display:block;margin-top:5px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8c8c8c}
+.rb-list button.is-on small{color:#db9a60}
+.rb-list svg{color:#666}
+.rb-list button:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+@media(hover:hover){.rb-list button:hover{background:#ffffff0a}}
+/* Portrait tablets: card on top, list below */
+@media(max-width:1023px) and (orientation:portrait){.rb{grid-template-columns:1fr}.rb-list{max-height:none}}
+@media(prefers-reduced-motion:reduce){.rb-feature{animation:none}}
+/* Tracks inside the tablet card: name over icons, Play centered at right — at every tablet width */
+.rb .rp-track{grid-template-columns:24px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:12px;row-gap:2px;padding-block:10px;min-height:0}
+.rb .rp-track-no{grid-row:1/3;align-self:center}
+.rb .rp-track-name{grid-column:2;grid-row:1;align-self:end}
+.rb .rp-track .rp-platforms{grid-column:2;grid-row:2;margin-left:-8px;gap:8px}
+.rb .rp-track-play{grid-column:3;grid-row:1/3;align-self:center;padding:0 16px}
