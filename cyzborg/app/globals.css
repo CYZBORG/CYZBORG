@@ -755,3 +755,11 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 /* Desktop: System → Network uses the same rhythm as Launch → Audio; rail sits closer to the System copy */
 @media(min-width:1024px) and (hover:hover) and (pointer:fine){#mission{padding-bottom:56px}#join{padding-top:46px}.system-rail{margin-top:28px}}
 @media(min-width:1800px) and (hover:hover) and (pointer:fine){#mission{padding-bottom:48px}#join{padding-top:37px}}
+/* Desktop: show every description in full inside the same-size box */
+@media(min-width:1024px) and (hover:hover) and (pointer:fine){
+.rb-feature{grid-template-columns:minmax(0,.6fr) minmax(0,1fr);gap:32px;padding:28px 32px}
+.rb-title{font-size:clamp(32px,2.8vw,46px);margin-top:6px}
+.rb-desc{display:block;-webkit-line-clamp:unset;overflow:visible;font-size:15.5px;line-height:1.6;max-width:none;margin-top:10px}
+.rb .rp-tracks{margin-top:14px}
+.rb .rp-track{padding-block:6px}
+}
