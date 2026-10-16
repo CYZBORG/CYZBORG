@@ -1,8 +1,51 @@
 {
   "albums": [
     {
-      "id": "pnr",
+      "id": "mbd",
       "label": "NEW RELEASE • TWO-TRACK RELEASE",
+      "type": "Two-track release",
+      "titleText": "MANIAC BY DESIGN",
+      "coverUrl": "/album-mbd.jpg",
+      "spotifyUrl": "https://open.spotify.com/album/2VdEdsfGlWYM95AGavfOfW",
+      "youtubeUrl": "https://music.youtube.com/playlist?list=OLAK5uy_lskT3pBua2fHLtlQsBYfKdvlr5TxhdJvY",
+      "appleUrl": "https://music.apple.com/us/album/maniac-by-design-single/6822272761",
+      "embedUrl": "https://open.spotify.com/embed/album/2VdEdsfGlWYM95AGavfOfW?utm_source=generator&theme=0",
+      "description": [
+        "TWO KINDS OF CRAZY. NEITHER ONE AN ACCIDENT.",
+        "One is loud. It grins through the set, argues with gravity, and makes animal noises by rep eight.",
+        "The other is silent. It shows up at 5 a.m. with no camera, no crowd, and nothing to prove to anyone but the bar.",
+        "Maniac by Design is both. Built on purpose, one rep at a time."
+      ],
+      "tracks": [
+        {
+          "id": "mbd-1",
+          "number": "01",
+          "name": "JUST FUCKING LIFT",
+          "spotifyUrl": "https://open.spotify.com/track/7uZvxisV5UVwrFnT5SjGP1",
+          "youtubeUrl": "https://music.youtube.com/playlist?list=OLAK5uy_lskT3pBua2fHLtlQsBYfKdvlr5TxhdJvY",
+          "appleUrl": "https://music.apple.com/us/album/maniac-by-design-single/6822272761",
+          "embedUrl": "https://open.spotify.com/embed/track/7uZvxisV5UVwrFnT5SjGP1?utm_source=generator&theme=0",
+          "description": [
+            "Up. Down. Back. Another round. This is the unhinged joy of picking up heavy things and putting them back down: a lost count, a running argument with gravity, and a grin nobody can explain. Don't ask why you're smiling. Just fucking lift. Then rack it nice and neat. We got manners."
+          ]
+        },
+        {
+          "id": "mbd-2",
+          "number": "02",
+          "name": "Silence Made the MANIAC",
+          "spotifyUrl": "https://open.spotify.com/track/0VRLeJZbKvyBz8YBa7eqCt",
+          "youtubeUrl": "https://music.youtube.com/playlist?list=OLAK5uy_lskT3pBua2fHLtlQsBYfKdvlr5TxhdJvY",
+          "appleUrl": "https://music.apple.com/us/album/maniac-by-design-single/6822272761",
+          "embedUrl": "https://open.spotify.com/embed/track/0VRLeJZbKvyBz8YBa7eqCt?utm_source=generator&theme=0",
+          "description": [
+            "Five in the morning. No camera, no crowd, no captions. Just cold steel and the choice to keep showing up when nobody is watching. Every quiet hour and every disciplined rep stacks up until the results are impossible to ignore. Silence made the maniac. CYZBORG made the noise."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pnr",
+      "label": "TWO-TRACK RELEASE",
       "titleText": "PSYCHOTIC Dancing",
       "coverUrl": "/album-pnr.jpg",
       "spotifyUrl": "#",
@@ -14,7 +57,33 @@
         "The other catches the right song between sets and stops taking the whole damn gym so seriously.",
         "PSYCHOTIC Dancing puts both sides together. The intensity that gets you through the set and the energy that keeps you moving when the weight hits the floor."
       ],
-      "embedUrl": ""
+      "embedUrl": "",
+      "tracks": [
+        {
+          "id": "pnr-1",
+          "number": "01",
+          "name": "PSYCHOTIC. NOT ROBOTIC.",
+          "spotifyUrl": "https://open.spotify.com/track/4QqhEUpS8RVaeX7yEEOvgv?si=fa2143e4fec84129",
+          "youtubeUrl": "https://music.youtube.com/watch?v=s7wmiy8xo_c&si=_jE8rLybAJUSu_U8",
+          "appleUrl": "https://music.apple.com/us/song/psychotic-not-robotic/6813677979",
+          "embedUrl": "https://open.spotify.com/embed/track/4QqhEUpS8RVaeX7yEEOvgv?utm_source=generator&theme=0",
+          "description": [
+            "This song is about refusing to train on autopilot. No going through the motions. No dead-eyed reps. No mechanical bullshit. It is about turning the switch, bringing aggression into the room, pushing past comfortable, and attacking the workout with enough energy to make it feel a little unhinged. Go harder. Get louder. Lose your mind for the set, then come back for another."
+          ]
+        },
+        {
+          "id": "pnr-2",
+          "number": "02",
+          "name": "Dancing Between Sets",
+          "spotifyUrl": "https://open.spotify.com/track/4gR0Tv8DozzlqH7kSt9K8b?si=9d744432f8d04344",
+          "youtubeUrl": "https://music.youtube.com/watch?v=fIi97je_6Mc&si=y3_tANQOnmvcs5O5",
+          "appleUrl": "https://music.apple.com/us/song/dancing-between-sets/6813677980",
+          "embedUrl": "https://open.spotify.com/embed/track/4gR0Tv8DozzlqH7kSt9K8b?utm_source=generator&theme=0",
+          "description": [
+            "The set ends, the weight hits the rack, and then the right track comes on. Suddenly you are not just standing there waiting for the next set. The shoulders start rolling, the feet start moving, maybe there is a little bounce, and before you know it, a head nod turns into a full rhythm. For a few seconds, the gym stops feeling so serious. The beat keeps going, the rest time ends, and it is right back to work. Catch the beat. Move a little. Reset. Do it again."
+          ]
+        }
+      ]
     },
     {
       "id": "fbm",
@@ -100,32 +169,6 @@
       ],
       "embedUrl": "https://open.spotify.com/embed/album/4MIKxWNZam7Dr9T5yOFcMo?utm_source=generator&theme=0",
       "type": "Single"
-    }
-  ],
-  "tracks": [
-    {
-      "id": "pnr-1",
-      "number": "01",
-      "name": "PSYCHOTIC. NOT ROBOTIC.",
-      "spotifyUrl": "https://open.spotify.com/track/4QqhEUpS8RVaeX7yEEOvgv?si=fa2143e4fec84129",
-      "youtubeUrl": "https://music.youtube.com/watch?v=s7wmiy8xo_c&si=_jE8rLybAJUSu_U8",
-      "appleUrl": "https://music.apple.com/us/song/psychotic-not-robotic/6813677979",
-      "embedUrl": "https://open.spotify.com/embed/track/4QqhEUpS8RVaeX7yEEOvgv?utm_source=generator&theme=0",
-      "description": [
-        "This song is about refusing to train on autopilot. No going through the motions. No dead-eyed reps. No mechanical bullshit. It is about turning the switch, bringing aggression into the room, pushing past comfortable, and attacking the workout with enough energy to make it feel a little unhinged. Go harder. Get louder. Lose your mind for the set, then come back for another."
-      ]
-    },
-    {
-      "id": "pnr-2",
-      "number": "02",
-      "name": "Dancing Between Sets",
-      "spotifyUrl": "https://open.spotify.com/track/4gR0Tv8DozzlqH7kSt9K8b?si=9d744432f8d04344",
-      "youtubeUrl": "https://music.youtube.com/watch?v=fIi97je_6Mc&si=y3_tANQOnmvcs5O5",
-      "appleUrl": "https://music.apple.com/us/song/dancing-between-sets/6813677980",
-      "embedUrl": "https://open.spotify.com/embed/track/4gR0Tv8DozzlqH7kSt9K8b?utm_source=generator&theme=0",
-      "description": [
-        "The set ends, the weight hits the rack, and then the right track comes on. Suddenly you are not just standing there waiting for the next set. The shoulders start rolling, the feet start moving, maybe there is a little bounce, and before you know it, a head nod turns into a full rhythm. For a few seconds, the gym stops feeling so serious. The beat keeps going, the rest time ends, and it is right back to work. Catch the beat. Move a little. Reset. Do it again."
-      ]
     }
   ],
   "fanFavorite": {

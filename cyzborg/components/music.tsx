@@ -6,8 +6,8 @@ import { useAudioDock } from "@/components/audio-dock";
 import catalog from "@/app/music-data.json";
 
 type Links = {spotifyUrl:string;youtubeUrl:string;appleUrl:string};
-type Track = Links & {id:string;number:string;name:string;embedUrl:string};
-type Release = Links & {id:string;titleText:string;coverUrl:string;embedUrl:string;description:string[];label?:string;type?:string};
+type Track = Links & {id:string;number:string;name:string;embedUrl:string;description?:string[]};
+type Release = Links & {id:string;titleText:string;coverUrl:string;embedUrl:string;description:string[];label?:string;type?:string;tracks?:Track[]};
 
 const PLATFORMS=[
   {key:"spotifyUrl",name:"Spotify",icon:siSpotify,color:"#1ED760"},
@@ -20,12 +20,12 @@ const PHONE="(max-width: 767px)";
 
 // Every release is described the same way: a type line and a tracklist (singles have one track).
 function tracksOf(r:Release):Track[]{
-  if(r.id==="pnr")return catalog.tracks as Track[];
+  if(r.tracks?.length)return r.tracks;
   return [{id:r.id,number:"01",name:r.titleText,embedUrl:r.embedUrl,spotifyUrl:r.spotifyUrl,appleUrl:r.appleUrl,youtubeUrl:r.youtubeUrl}];
 }
 function typeOf(r:Release){
   if(r.type)return r.type;
-  if(r.id==="pnr")return "Two-track release";
+  if((r.tracks?.length||0)>1)return `${r.tracks!.length===2?"Two":r.tracks!.length}-track release`;
   return r.embedUrl.includes("/album/")?"Album":"Single";
 }
 
@@ -41,12 +41,26 @@ function Description({release}:{release:Release}){
   return <div className="rp-desc">{leadIsTagline?<><p className="rp-tagline">{lead}</p>{rest.map((p,i)=><p key={i}>{p}</p>)}</>:release.description.map((p,i)=><p key={i}>{p}</p>)}</div>;
 }
 
-function Tracklist({release}:{release:Release}){
+// Song descriptions: tapping a song name swaps the release description for that song's.
+function useSongFocus(){const [focus,setFocus]=useState<string|null>(null);return {focus,toggle:(id:string)=>setFocus(f=>f===id?null:id),clear:()=>setFocus(null)};}
+type SongFocus=ReturnType<typeof useSongFocus>;
+function songNote(release:Release,focus:string|null){const t=tracksOf(release).find(x=>x.id===focus&&x.description?.length);return t?<p className="rp-song-note"><span>Track {t.number}</span>{t.name}</p>:null;}
+// All description variants share one grid cell, so switching songs never changes the box height.
+function DescStack({release,focus,className}:{release:Release;focus:string|null;className:string}){
+  const songs=tracksOf(release).filter(t=>t.description?.length);
+  const on=songs.some(t=>t.id===focus)?focus:null;
+  return <div className="desc-stack">
+    <p className={`${className} ${on===null?"is-on":""}`} aria-hidden={on!==null||undefined}>{release.description.join(" ")}</p>
+    {songs.map(t=><div key={t.id} className={on===t.id?"is-on":""} aria-hidden={on!==t.id||undefined}><p className="rp-song-note"><span>Track {t.number}</span>{t.name}</p><p className={className}>{t.description!.join(" ")}</p></div>)}
+  </div>;
+}
+
+function Tracklist({release,song}:{release:Release;song?:SongFocus}){
   const dock=useAudioDock();
   return <ol className="rp-tracks" aria-label={`${release.titleText} tracklist`}>
     {tracksOf(release).map(t=>{const on=dock.current?.id===t.id;return <li key={t.id} className={`rp-track ${on?"is-playing":""}`}>
       <span className="rp-track-no" aria-hidden="true">{on?<AudioLines size={16}/>:t.number}</span>
-      <span className="rp-track-name">{t.name}</span>
+      {song&&t.description?.length?<button className={`rp-track-name rp-track-focus ${song.focus===t.id?"is-focus":""}`} aria-pressed={song.focus===t.id} onClick={()=>song.toggle(t.id)}>{t.name}</button>:<span className="rp-track-name">{t.name}</span>}
       <PlatformIcons links={t} label={t.name}/>
       {t.embedUrl&&<button className="rp-track-play" onClick={()=>dock.play({id:t.id,title:t.name,embedUrl:t.embedUrl})} aria-label={on?`${t.name} is in the audio player`:`Play ${t.name}`}><Play size={14} fill="currentColor"/><span>{on?"Playing":"Play"}</span></button>}
     </li>;})}
@@ -86,6 +100,8 @@ function PlayableCover({release,className,size=22}:{release:Release;className:st
 // Phones: the open release sits in a boxed card; earlier releases live in one expandable group.
 // Only one release is open at a time, the new release included.
 function PhoneCard({release,isNew,onClose}:{release:Release;isNew:boolean;onClose:()=>void}){
+  const song=useSongFocus();
+  const t=tracksOf(release).find(x=>x.id===song.focus&&x.description?.length);
   return <div className="pc" id={`rl-body-${release.id}`}>
     <img className="rb-bg" src={release.coverUrl} alt=""/>
     <div className="pc-head">
@@ -93,8 +109,9 @@ function PhoneCard({release,isNew,onClose}:{release:Release;isNew:boolean;onClos
       <button className="pc-close" aria-expanded="true" aria-label={`Close ${release.titleText}`} onClick={onClose}><span className="rl-text"><span className="rp-meta">{isNew&&<span className="rl-new">NEW</span>}{release.label?release.label.replace(/^NEW RELEASE\s*[•·]\s*/i,""):typeOf(release)}</span><span className="pc-title">{release.titleText}</span></span>
       <ChevronDown className="rl-chev" size={22} aria-hidden="true"/></button>
     </div>
-    <Description release={release}/>
-    <Tracklist release={release}/>
+    {songNote(release,song.focus)}
+    {t?<div className="rp-desc rp-song-desc"><p>{t.description!.join(" ")}</p></div>:<Description release={release}/>}
+    <Tracklist release={release} song={song}/>
   </div>;
 }
 function PhoneRow({release,isNew,onOpen}:{release:Release;isNew:boolean;onOpen:()=>void}){
@@ -138,22 +155,28 @@ function ReleaseList(){
   </div>;
 }
 
+function BoardFeature({release:x,on}:{release:Release;on:boolean}){
+  const song=useSongFocus();
+  useEffect(()=>{if(!on)song.clear();},[on]);// eslint-disable-line react-hooks/exhaustive-deps
+  return <article className={`rb-feature ${on?"is-on":""}`} aria-hidden={!on||undefined} inert={!on||undefined}>
+    <img className="rb-bg" src={x.coverUrl} alt=""/>
+    <div className="rb-copy">
+      <p className="rp-meta">{x.label||typeOf(x)}</p>
+      <h3 className="rb-title">{x.titleText}</h3>
+      <DescStack release={x} focus={song.focus} className="rb-desc"/>
+      <Tracklist release={x} song={song}/>
+    </div>
+    <PlayableCover release={x} className="rb-cover"/>
+  </article>;
+}
+
 // Tablets: featured release card beside a scrollable list of every release.
 function ReleaseBoard(){
   const [sel,setSel]=useState(0);
   return <div className="rb">
     {/* Every release is laid out in the same cell, so the card is always as tall as the tallest one (PSYCHOTIC Dancing) and never changes size. */}
     <div className="rb-stack">
-      {releases.map((x,i)=><article className={`rb-feature ${i===sel?"is-on":""}`} key={x.id} aria-hidden={i!==sel||undefined} inert={i!==sel||undefined}>
-        <img className="rb-bg" src={x.coverUrl} alt=""/>
-        <div className="rb-copy">
-          <p className="rp-meta">{x.label||typeOf(x)}</p>
-          <h3 className="rb-title">{x.titleText}</h3>
-          <p className="rb-desc">{x.description.join(" ")}</p>
-          <Tracklist release={x}/>
-        </div>
-        <PlayableCover release={x} className="rb-cover"/>
-      </article>)}
+      {releases.map((x,i)=><BoardFeature key={x.id} release={x} on={i===sel}/>)}
     </div>
     <ul className="rb-list" aria-label="All releases">
       {releases.map((x,i)=><li key={x.id}><button className={i===sel?"is-on":""} aria-pressed={i===sel} onClick={()=>setSel(i)}>

@@ -763,3 +763,18 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .rb .rp-tracks{margin-top:14px}
 .rb .rp-track{padding-block:6px}
 }
+
+/* Song descriptions: tap a song name to read about that song */
+.desc-stack{display:grid}
+.desc-stack>*{grid-area:1/1;visibility:hidden}
+.desc-stack>.is-on{visibility:visible;animation:rl-open 260ms cubic-bezier(.16,1,.3,1)}
+.rp-track-focus{padding:0;border:0;background:none;color:#fff;text-align:left;cursor:pointer;text-decoration:underline;text-decoration-color:#ffffff40;text-underline-offset:4px;transition:color 160ms ease,text-decoration-color 160ms ease}
+.rp-track-focus.is-focus{color:var(--copper);text-decoration-color:var(--copper)}
+@media(hover:hover) and (pointer:fine){.rp-track-focus:hover{text-decoration-color:currentColor}}
+.rp-track-focus:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.rp-song-note{display:flex;align-items:baseline;gap:8px;margin-top:10px;font:600 15px/1.2 var(--heading);text-transform:uppercase;color:#fff}
+.rp-song-note span{font:700 11px/1 var(--body);letter-spacing:.12em;color:var(--copper)}
+@media(prefers-reduced-motion:reduce){.desc-stack>.is-on{animation:none}}
+.desc-stack .rp-song-note{margin-top:10px;margin-bottom:-4px}
+/* Description variants inherit their card's visibility so hidden releases stay hidden */
+.desc-stack>.is-on{visibility:inherit}
