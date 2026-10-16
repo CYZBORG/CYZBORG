@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-const UPDATED = "October 12, 2026";
+const UPDATED = "October 16, 2026";
 const CONTACT = "contact@cyzborg.com";
 
 function Mail({subject}:{subject?:string}){return <a href={`mailto:${CONTACT}${subject?`?subject=${encodeURIComponent(subject)}`:""}`}>{CONTACT}</a>;}
@@ -30,6 +30,7 @@ export function Privacy(){
       <li><strong>A scrambled (hashed) version of your IP address</strong>, stored briefly to stop spam and abuse. We don’t keep your actual IP address.</li>
     </ul>
     <p>We don’t collect payment information. There is nothing to buy on the site yet.</p>
+    <p><strong>Calorie &amp; macro calculator.</strong> The age, height, weight, body fat, and activity details you enter in the calculator are processed only in your browser. They are never sent to us or stored, and we can’t see them.</p>
 
     <h2>Cookies</h2>
     <p>We use one functional cookie, <code>cyzborg_input</code>. It is set only when you vote or send an idea, it holds the random ID described above, and it expires after one year. The site owner’s sign-in uses a separate cookie that only affects the owner dashboard. We don’t use advertising, analytics, or tracking cookies, so there is no cookie banner to accept.</p>
@@ -84,8 +85,9 @@ export function Terms(){
     <h2>Using the site</h2>
     <p>Don’t misuse the site. For example, don’t submit spam, abusive or unlawful content, or automated votes, and don’t try to break in or overload the site. We may remove submissions or block access that violates these terms.</p>
 
-    <h2>Fitness disclaimer</h2>
-    <p>CYZBORG is about training culture, but nothing on this site is medical, fitness, or nutrition advice. Talk to a qualified professional before starting a new exercise program, and train within your limits.</p>
+    <h2>Fitness and nutrition disclaimer</h2>
+    <p>CYZBORG is about training culture, but nothing on this site is medical, fitness, or nutrition advice. Talk to a qualified professional before starting a new exercise program or changing your diet, and train within your limits.</p>
+    <p>The calorie and macro calculator provides general estimates for healthy adults aged 18 and over, based on published equations. Results are not a diagnosis, treatment, or personalized plan, may not fit your individual needs, and are provided “as is.” Don’t use them in place of advice from a doctor or registered dietitian, especially if you are pregnant or breastfeeding, have a medical condition, take medication, or have a history of disordered eating.</p>
 
     <h2>Explicit content</h2>
     <p>Some CYZBORG music and product names contain explicit language.</p>
