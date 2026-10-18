@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState, type ReactNode } from "react";
+import SiteHeader from "@/components/site-header";
 import { ACTIVITY, CM_PER_IN, LB_PER_KG, calculate, floorFor, macros, type ActivityId, type GoalId, type Sex, type Split } from "@/lib/nutrition";
 
 type Units = "imperial" | "metric";
@@ -52,7 +53,7 @@ export default function CalculatorPage(){
   const weight=(kgv:number)=>units==="imperial"?`${Math.round(kgv*LB_PER_KG)} lb`:`${Math.round(kgv)} kg`;
 
   return <main className="legal-page calc-page">
-    <header className="legal-header"><div className="shell"><a className="brand" href="/" aria-label="CYZBORG home"><img className="helmet" src="/helmet.svg" alt=""/><img className="wordmark" src="/wordmark-tight.svg" alt="CYZBORG"/></a></div></header>
+    <SiteHeader onHome={false} current="calculator"/>
     <div className="shell calc-shell">
       <header className="calc-intro">
         <h1>Calorie &amp; macro calculator</h1>

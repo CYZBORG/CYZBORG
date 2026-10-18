@@ -849,3 +849,6 @@ html{scrollbar-color:#3a3a3a #000;caret-color:var(--blue)}
 .calc-seg button:focus-visible,.calc-goals button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media(max-width:900px){.calc-grid{grid-template-columns:1fr}.calc-form{position:static}}
 @media(max-width:520px){.calc-form,.calc-results{padding:16px}.calc-macros,.calc-stats{grid-template-columns:1fr 1fr}.calc-macros>div:last-child,.calc-stats>div:last-child{grid-column:1/-1}.calc-row{flex-wrap:wrap}.calc-row>*{flex:1 1 30%}}
+/* Calculator page sits under the fixed shared header */
+.calc-page .calc-shell{padding-top:calc(var(--header-height) + 40px)}
+nav a[aria-current=page]{color:var(--copper)}
