@@ -909,3 +909,5 @@ nav a[aria-current=page]{color:var(--copper)}
 .drawer-close{position:absolute;right:0;top:50%;transform:translateY(-50%)}
 .drawer-close:active{transform:translateY(-50%) scale(.95)}
 }
+/* Phones: helmet starts inside the bar (no top clipping) and overhangs only the bottom */
+@media(max-width:767px){.header-helmet{top:8px;transform:translateX(-50%);width:52px;height:70px}}
