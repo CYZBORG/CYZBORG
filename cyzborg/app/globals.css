@@ -898,3 +898,14 @@ nav a[aria-current=page]{color:var(--copper)}
 .drawer-mark{padding:30px 0 26px}
 .drawer-mark img:first-child{width:clamp(140px,44vw,190px)}
 @media(max-height:900px){.drawer-mark{padding:18px 0 16px}.drawer-mark img:first-child{width:clamp(120px,36vw,160px)}}
+
+/* Phones: full-width header bar (no floating island) and centered drawer wordmark */
+@media(max-width:767px){
+.site-header,.site-header.is-scrolled{padding-top:0}
+.header-inner{width:100%;height:var(--header-height);border-radius:0;border-width:0 0 1px;padding-inline:16px}
+.site-header.is-scrolled .header-inner{border-color:#ffffff1f}
+.drawer-top{position:relative;justify-content:center}
+.drawer-top>a{margin-inline:auto}
+.drawer-close{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.drawer-close:active{transform:translateY(-50%) scale(.95)}
+}
