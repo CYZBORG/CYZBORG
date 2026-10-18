@@ -56,7 +56,7 @@ export default function SiteHeader({onHome=true,current}:{onHome?:boolean;curren
           <a href={home} onClick={()=>close(false)} aria-label="CYZBORG home"><img className="drawer-word" src="/wordmark-tight.svg" alt="CYZBORG"/></a>
           <button ref={closeBtn} className="drawer-close" onClick={()=>close()} aria-label="Close menu"><X size={26}/></button>
         </div>
-        <div className="drawer-mark" aria-hidden="true"><img src="/helmet.svg" alt=""/><img src="/wordmark-tight.svg" alt=""/></div>
+        <div className="drawer-mark" aria-hidden="true"><img src="/helmet.svg" alt=""/></div>
         <ul className="drawer-links">
           <li><span className="drawer-soon">Shop <small>SOON</small></span></li>
           <li><span className="drawer-soon">Origin <small>SOON</small></span></li>
