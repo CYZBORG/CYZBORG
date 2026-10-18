@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowLeft } from "lucide-react";
 import BrandHelp from "@/components/brand-help";
 
 // Shared floating header. On the home page links jump to sections; on other pages they go back home first.
@@ -23,9 +23,10 @@ export default function SiteHeader({onHome=true,current}:{onHome?:boolean;curren
     <header className={`site-header ${scrolled||menu?"is-scrolled":""} ${menu?"is-menu-open":""}`}><div className="shell header-inner">
       <a className="brand header-wordmark" href={home} aria-label="CYZBORG home"><img className="wordmark" src="/wordmark-tight.svg" alt="CYZBORG" /></a>
       <a className="header-helmet" href={home} aria-label="CYZBORG home"><img src="/helmet.svg" alt="" width={226} height={308}/></a>
+      {!onHome?<a className="header-home" href="/"><ArrowLeft size={18} aria-hidden="true"/><span><span className="header-home-long">BACK TO </span>HOME</span></a>:<>
       <nav className="desktop-nav" aria-label="Primary">{links(false)}</nav>
       <button className="header-cta" onClick={()=>setHelp(true)}>SHARE YOUR INPUT</button>
-      <button className="menu-button" onClick={()=>setMenu(!menu)} aria-label={menu?"Close menu":"Open menu"} aria-expanded={menu} aria-controls="mobile-menu">{menu?<X/>:<Menu/>}</button>
+      <button className="menu-button" onClick={()=>setMenu(!menu)} aria-label={menu?"Close menu":"Open menu"} aria-expanded={menu} aria-controls="mobile-menu">{menu?<X/>:<Menu/>}</button></>}
     </div>{menu&&<nav id="mobile-menu" className="mobile-menu" aria-label="Mobile">{links(true)}<button className="mobile-input-cta" onClick={()=>{close();setHelp(true);}}>SHARE YOUR INPUT</button></nav>}</header>
     {help&&<BrandHelp onClose={()=>setHelp(false)}/>}
   </>;
