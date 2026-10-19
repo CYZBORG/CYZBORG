@@ -1,5 +1,5 @@
 import {createHash,createHmac,randomUUID,timingSafeEqual} from 'node:crypto';
-export const productIds=['core-front','core-olive-front','z-front','mbfhm-front','fitness-front','dogs-front','psychotic-front','fyf-front','ssmc-front','muscle-front'];
+export const productIds=['core-front','core-olive-front','z-front','mbfhm-front','fitness-front','dogs-front','psychotic-front','fyf-front','ssmc-front','muscle-front','hoodie-black-front','hoodie-bone-front','zip-mauve-front','zip-coffee-front'];
 const categories=['Apparel & items','Fabrics & fit','Music','Videos & content','Anything else'];
 const uuid=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
 const emailOK=e=>e.length<=254&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);

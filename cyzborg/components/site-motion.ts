@@ -65,9 +65,9 @@ function choreography(){
   gsap.from(".category",{clipPath:"inset(100% 0 0 0)",duration:0.9,ease:EXPO,stagger:0.1,
     scrollTrigger:{trigger:".category-grid",start:"top 98%",once:true}});
 
-  ScrollTrigger.batch(".product",{start:"top 92%",once:true,
+  ScrollTrigger.batch(".drop-card",{start:"top 92%",once:true,
     onEnter:els=>gsap.fromTo(els,{y:32,opacity:0},{y:0,opacity:1,duration:0.7,ease:EXPO,stagger:{each:0.06,amount:0.3},overwrite:true})});
-  gsap.set(".product",{opacity:0});
+  gsap.set(".drop-card",{opacity:0});
 
   gsap.utils.toArray<HTMLElement>(".rp-art").forEach(art=>{
     gsap.fromTo(art,{filter:"blur(12px)",scale:.94,opacity:0},{filter:"blur(0px)",scale:1,opacity:1,duration:0.9,ease:EXPO,clearProps:"filter",

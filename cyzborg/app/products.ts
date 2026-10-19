@@ -54,9 +54,27 @@ export const products = [
     "back": "ssmc-back.png"
   },
   {
-    "name": "Iconic CYZBORG Muscle T-Shirt",
+    "name": "Signature Hoodie",
     "color": "Black",
-    "front": "muscle-front.png",
-    "back": "muscle-back.png"
+    "front": "hoodie-black-front.png",
+    "back": "hoodie-black-back.png"
+  },
+  {
+    "name": "Signature Hoodie",
+    "color": "Pale Silver",
+    "front": "hoodie-bone-front.png",
+    "back": "hoodie-bone-back.png"
+  },
+  {
+    "name": "Women’s Signature Cropped Zip Hoodie",
+    "color": "Coffee",
+    "front": "zip-coffee-front.png",
+    "back": "zip-coffee-back.png"
+  },
+  {
+    "name": "Women’s Signature Cropped Zip Hoodie",
+    "color": "Pink Lavender",
+    "front": "zip-mauve-front.png",
+    "back": "zip-mauve-back.png"
   }
 ];

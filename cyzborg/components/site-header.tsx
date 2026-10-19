@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Menu, X, ArrowLeft } from "lucide-react";
 import BrandHelp from "@/components/brand-help";
 
@@ -26,7 +26,7 @@ export default function SiteHeader({onHome=true,current}:{onHome?:boolean;curren
     closeBtn.current?.focus();
     const key=(e:KeyboardEvent)=>{
       if(e.key==="Escape")close();
-      if(e.key==="Tab"){const items=[...document.querySelectorAll<HTMLElement>(".drawer a,.drawer button")];if(!items.length)return;const first=items[0],last=items[items.length-1];
+      if(e.key==="Tab"){const items=[...document.querySelectorAll<HTMLElement>(".xmenu a,.xmenu button")];if(!items.length)return;const first=items[0],last=items[items.length-1];
         if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
     };
     document.addEventListener("keydown",key);
@@ -49,22 +49,21 @@ export default function SiteHeader({onHome=true,current}:{onHome?:boolean;curren
       <button ref={trigger} className="menu-button" onClick={open} aria-label="Open menu" aria-expanded={menu} aria-controls="site-drawer"><Menu/></button></>}
     </div></header>
 
-    {menu&&<div className={`drawer-root ${closing?"is-closing":""}`}>
-      <div className="drawer-backdrop" onClick={()=>close()} aria-hidden="true"/>
-      <nav className="drawer" id="site-drawer" aria-label="Menu" role="dialog" aria-modal="true">
-        <div className="drawer-top">
-          <a href={home} onClick={()=>close(false)} aria-label="CYZBORG home"><img className="drawer-word" src="/wordmark-tight.svg" alt="CYZBORG"/></a>
-          <button ref={closeBtn} className="drawer-close" onClick={()=>close()} aria-label="Close menu"><X size={26}/></button>
-        </div>
-        <div className="drawer-mark" aria-hidden="true"><img src="/helmet.svg" alt=""/></div>
-        <ul className="drawer-links">
-          <li><span className="drawer-soon">Shop <small>SOON</small></span></li>
-          <li><span className="drawer-soon">Origin <small>SOON</small></span></li>
-          {nav.map(([l,h])=><li key={l}><a href={h} onClick={()=>close(false)} aria-current={l==="CALCULATOR"&&current==="calculator"?"page":undefined}>{l[0]+l.slice(1).toLowerCase()}</a></li>)}
-        </ul>
-        <button className="drawer-cta" onClick={()=>{close(false);setHelp(true);}}>Share your input</button>
-      </nav>
-    </div>}
+    {menu&&<nav className={`xmenu ${closing?"is-closing":""}`} id="site-drawer" aria-label="Menu" role="dialog" aria-modal="true">
+      <div className="xmenu-top">
+        <a className="xmenu-word" href={home} onClick={()=>close(false)} aria-label="CYZBORG home"><img src="/wordmark-tight.svg" alt="CYZBORG"/></a>
+        <button ref={closeBtn} className="xmenu-close" onClick={()=>close()} aria-label="Close menu"><X size={30}/></button>
+      </div>
+      <ul className="xmenu-links">
+        <li><span className="xmenu-link is-soon">Shop<small>SOON</small></span></li>
+        <li><span className="xmenu-link is-soon">Origin<small>SOON</small></span></li>
+        {nav.map(([l,h],i)=><li key={l} style={{"--i":i+2} as CSSProperties}><a className="xmenu-link" href={h} onClick={()=>close(false)} aria-current={l==="CALCULATOR"&&current==="calculator"?"page":undefined}>{l}</a></li>)}
+      </ul>
+      <div className="xmenu-foot">
+        <a className="xmenu-btn is-primary" href={`${base}#first-access`} onClick={()=>close(false)}>GET FIRST ACCESS</a>
+        <button className="xmenu-btn" onClick={()=>{close(false);setHelp(true);}}>SHARE YOUR INPUT</button>
+      </div>
+    </nav>}
     {help&&<BrandHelp onClose={()=>setHelp(false)}/>}
   </>;
 }

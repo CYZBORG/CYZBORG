@@ -26,10 +26,10 @@ The existing website uses React and Vite. GitHub hosts its source and Netlify de
 
 ## Capabilities and Constraints
 
-- Apparel concepts with larger front/back inspection and two coming-soon hoodie previews.
+- Apparel concepts with larger front/back inspection, including the Signature Hoodie (Black, Pale Silver) and Women’s Signature Cropped Zip Hoodie (Pink Lavender #D9B3C9, Coffee).
 - Positive-only “I’d wear it” votes, without requiring account sign-in. Browser-based duplicate prevention is not a guarantee of one vote per human.
 - Original music with album selection, listening links, and a separate My Body Fucking Hates Me fan-favorite feature.
-- Share Your Input combines a direct suggestion form with About the Brand. Do not imply live AI replies or guaranteed responses.
+- Share Your Input is a side sheet with a direct suggestion form (topic chips, idea, optional reply email). Do not imply live AI replies or guaranteed responses.
 - Suggestions may concern apparel, fabrics, items, music, videos, or other ideas. Reply email is optional.
 - January 2027 is a tentative launch target, not a promise. Products shown are concepts; do not invent confirmed prices, fabrics, availability, or release dates.
 - Shop and Origin remain coming soon. The founders’ personal origin story is reserved for later.
